@@ -1,0 +1,37 @@
+.container {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 60px 530px 490px 530px 480px;
+  grid-template-areas: "h  h  h  h  h  h  h  h  h  h  h  h" "a  a  c  c  c  c  c  c  c  c  c  c" "a  a  tp tp tp tp tp tp tp  o  o  o" "a  a  d  d  d  d  d   d mt mt mt mt" "a  a  td td td td td td td td td td"; }
+
+.header {
+  grid-area: h; }
+
+.aside {
+  grid-area: a; }
+
+.chart {
+  grid-area: c; }
+
+.trade-panel {
+  grid-area: tp; }
+
+.order {
+  grid-area: o; }
+
+.depth {
+  grid-area: d; }
+
+.market-trades {
+  grid-area: mt; }
+
+.token-details {
+  grid-area: td; }
+
+.header {
+  background-color: #181b2a; }
+
+.aside, .chart, .trade-panel, .order, .depth, .market-trades, .token-details {
+  border-radius: 10px;
+  background-color: #fde886; }
