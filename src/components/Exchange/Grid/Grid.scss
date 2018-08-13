@@ -1,14 +1,14 @@
 .container {
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: minmax(280px, 360px) repeat(11, 1fr);
   grid-template-rows: 60px 530px 490px 530px 480px;
   grid-template-areas:
-    "h  h  h  h  h  h  h  h  h  h  h  h"
-    "a  a  c  c  c  c  c  c  c  c  c  c"
-    "a  a  tp tp tp tp tp tp tp  o  o  o"
-    "a  a  d  d  d  d  d   d mt mt mt mt"
-    "a  a  td td td td td td td td td td";
+    "h   h   h  h  h  h  h  h  h  h  h  h"
+    "a   c   c  c  c  c  c  c  c  c  c  c"
+    "a  tp  tp tp tp tp tp tp tp  o  o  o"
+    "a   d   d  d  d  d  d  d mt mt mt mt"
+    "a  td  td td td td td td td td td td";
 }
 
 .header {
