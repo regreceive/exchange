@@ -15,7 +15,7 @@
   background-color: #262a42;
   grid-template-columns: minmax(280px, 360px) minmax(600px, 3fr) minmax(60px, 0.5fr) minmax(280px, 2fr);
   grid-template-rows: 60px 530px 490px 530px 480px;
-  grid-template-areas: "h  h  h  h" "a  c  c  c" "a tp tp  o" "a  d mt mt" "a td td td"; }
+  grid-template-areas: "h  h  h  h" "a  c  c  c" "a tp tp  o" "a  d mt mt" "a td td td"; }
 
 .header {
   grid-area: h; }

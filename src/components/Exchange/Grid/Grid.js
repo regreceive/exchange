@@ -4,6 +4,7 @@ import Header from '../Header';
 import LeftSide from '../LeftSide';
 import Notice from '../Notice';
 import Mscy from '../Mscy';
+import TradePanel from '../TradePanel';
 import './Grid.css';
 
 const Grid = () => {
@@ -25,7 +26,9 @@ const Grid = () => {
       {/*走势图*/}
       <div styleName="chart" />
       {/*交易面板*/}
-      <div styleName="trade-panel" />
+      <div styleName="trade-panel">
+        <TradePanel />
+      </div>
       {/*对手盘*/}
       <div styleName="order" />
       {/*深度图*/}
