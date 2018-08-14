@@ -223,12 +223,17 @@ module.exports = {
 
           // 如果引入的是依赖库里的css，则不进行hash命名
           {
-            test: /\.css$/,
-            use: [
-              'style-loader',
+            test: /\.(css|less)$/,
+            rules: [
+              { loader: 'style-loader' },
               {
                 loader: 'css-loader',
                 options: { sourceMap: isDebug },
+              },
+              {
+                test: /\.less$/,
+                include: paths.appNodeModules,
+                loader: 'less-loader',
               },
             ],
           },
