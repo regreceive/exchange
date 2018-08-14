@@ -1,6 +1,6 @@
 const loadAll = true;
 const defaultLanguage = 'en';
-const otherLang = ['cn', 'kr', 'vi'];
+const otherLang = ['cn'];
 
 const supportLanguage = [defaultLanguage, ...otherLang];
 

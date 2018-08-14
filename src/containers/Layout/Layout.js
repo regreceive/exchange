@@ -9,7 +9,6 @@ import constant from '../../services/constants';
 import history from '../../history';
 import { clearSession, changeLanguage } from '../../actions/globalActions';
 import { openInfoModal } from '../../actions/utilActions';
-import { createNewConnectionInstance } from '../../actions/connectionActions';
 import { LayoutView } from '../../components/Layout';
 import * as common from '../../utils/common';
 
@@ -41,18 +40,15 @@ export default class Layout extends React.Component {
     document.onkeypress = this.resetTimer;
 
     // this.intervalIdle = setInterval(this.checkTimmer.bind(this), 10000);
-
-    this.props.dispatch(createNewConnectionInstance());
-    // createNewConnection()
   }
 
   checkTimmer() {
     if (!this.props.account.account) return;
     if (this.props.utils.infoModal && this.props.utils.infoModal.open) return;
     if (this.idleTime >= this.timeoutEndSession) {
-      let timeOut = constant.IDLE_TIME_OUT / 60;
-      let titleModal = this.props.translate('error.time_out') || 'Time out';
-      let contentModal =
+      const timeOut = constant.IDLE_TIME_OUT / 60;
+      const titleModal = this.props.translate('error.time_out') || 'Time out';
+      const contentModal =
         this.props.translate('error.clear_data_timeout', { time: timeOut }) ||
         `We've cleared all your data because your session is timed out ${timeOut} minutes`;
       this.props.dispatch(openInfoModal(titleModal, contentModal));

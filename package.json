@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.8.1",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -104,13 +105,15 @@
       "react-app"
     ],
     "plugins": [
-      "transform-decorators-legacy"
+      "transform-decorators-legacy",
+      ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
     ]
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.8.0",
     "babel-plugin-react-css-modules": "^3.4.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "eslint-config-prettier": "^2.9.0",
