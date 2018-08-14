@@ -1,9 +1,5 @@
 import React from 'react';
-// import { Tabs, Input, Row, Col } from 'antd';
 import './LeftSide.css';
-// const TabPane = Tabs.TabPane;
-// const Search = Input.Search;
-
 const LeftSide = () => {
   return (
     <div styleName="drawer">
@@ -50,6 +46,22 @@ const LeftSide = () => {
             </div>
           </dd>
         </dl>
+        <div styleName="coin_list">
+          <dl>
+            <dt />
+            <dd>
+              <div styleName="coin_unit">
+                <div>
+                  <span>
+                    <em>btc</em>
+                  </span>
+                  <span>42004.10</span>
+                  <span>-4.93%</span>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </div>
       </div>
     </div>
   );

@@ -54,22 +54,25 @@
         border-color: currentColor; }
   .drawer .coin_table {
     padding: 0 4px 4px; }
+    .drawer .coin_table .coin_unit {
+      height: 40px;
+      padding-top: 18px;
+      white-space: nowrap;
+      margin-left: 16px;
+      padding: 0 0 0 10px;
+      height: 25px;
+      line-height: 25px;
+      font-size: 12px; }
+      .drawer .coin_table .coin_unit span {
+        display: inline-block; }
+        .drawer .coin_table .coin_unit span:first-of-type {
+          width: 39%; }
+        .drawer .coin_table .coin_unit span:nth-of-type(2) {
+          width: 36%; }
+        .drawer .coin_table .coin_unit span:last-of-type {
+          width: 25%; }
     .drawer .coin_table .coin_thead {
       cursor: auto; }
-      .drawer .coin_table .coin_thead .coin_unit {
-        height: 40px;
-        padding-top: 18px;
-        white-space: nowrap;
-        margin-left: 16px;
-        padding: 0 0 0 10px;
-        height: 25px;
-        line-height: 25px;
-        font-size: 12px; }
-        .drawer .coin_table .coin_thead .coin_unit span {
-          display: inline-block; }
-          .drawer .coin_table .coin_thead .coin_unit span:first-of-type {
-            width: 39%; }
-          .drawer .coin_table .coin_thead .coin_unit span:nth-of-type(2) {
-            width: 36%; }
-          .drawer .coin_table .coin_thead .coin_unit span:last-of-type {
-            width: 25%; }
+    .drawer .coin_table .coin_list {
+      max-height: 560px;
+      overflow: auto; }
