@@ -1,7 +1,20 @@
+*{
+  color:#c7cce6;
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  ul,li,dl,dt{
+    list-style: none;
+  }
+  a{
+    text-decoration: none;
+  }
+}
 .container {
   padding: 5px;
   display: grid;
   grid-gap: 5px;
+  background-color:#262a42;
   grid-template-columns: minmax(280px, 360px) minmax(600px, 3fr) minmax(60px, 0.5fr) minmax(280px, 2fr);
   grid-template-rows: 60px 530px 490px 530px 480px;
   grid-template-areas:
@@ -49,7 +62,7 @@
 }
 
 
-.aside, .chart, .trade-panel, .order, .depth, .market-trades, .token-details {
-  border-radius: 10px;
-  background-color: rgb(253, 232, 134);
+.chart, .trade-panel, .order, .depth, .market-trades, .token-details {
+  border-radius: 0 0 3px 3px;
+  background-color:#181b2a;
 }

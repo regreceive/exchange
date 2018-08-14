@@ -1,0 +1,34 @@
+.sidebar_notice {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    background-color:#181b2a;
+    .tit {
+        height: 48px;
+        line-height: 48px;
+        font-size: 16px;
+        box-shadow:0px 3px 6px rgba(0,0,0,0.1); 
+        padding:0 20px; 
+    }
+    .in{
+        padding:0 20px;
+        >ul>li{
+        border-top: 1px solid #1f2943;
+        height: 83px;
+        font-size: 12px;
+        line-height: 12px;
+        padding: 17px 0 10px;
+        text-align: right;
+        cursor: pointer;
+        >a{
+            display:block;
+            text-align: left;
+            height: 36px;
+            margin-bottom: 6px;
+            overflow: hidden;
+            line-height: 18px;   
+        }   
+        }
+    }
+    
+}

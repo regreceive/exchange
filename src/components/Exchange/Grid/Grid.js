@@ -1,7 +1,9 @@
 import React from 'react';
 
 import Header from '../Header';
-
+import LeftSide from '../LeftSide';
+import Notice from '../Notice';
+import Mscy from '../Mscy';
 import './Grid.css';
 
 const Grid = () => {
@@ -14,8 +16,10 @@ const Grid = () => {
       {/*边栏*/}
       <div styleName="aside">
         {/*交易对*/}
+        <LeftSide />
         <div />
         {/*通知*/}
+        <Notice />
         <div />
       </div>
       {/*走势图*/}
@@ -29,7 +33,9 @@ const Grid = () => {
       {/*实时成交*/}
       <div styleName="market-trades" />
       {/*币种信息*/}
-      <div styleName="token-details" />
+      <div styleName="token-details">
+        <Mscy />
+      </div>
     </div>
   );
 };
