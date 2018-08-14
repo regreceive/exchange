@@ -63,7 +63,8 @@
         margin-left: 16px;
         padding: 0 0 0 10px;
         height: 25px;
-        line-height: 25px; }
+        line-height: 25px;
+        font-size: 12px; }
         .drawer .coin_table .coin_thead .coin_unit span {
           display: inline-block; }
           .drawer .coin_table .coin_thead .coin_unit span:first-of-type {
