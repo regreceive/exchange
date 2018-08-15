@@ -12,6 +12,9 @@
 # webstorm
 .idea
 
+# node-sass-chokidar
+.css
+
 # misc
 .DS_Store
 .env.local

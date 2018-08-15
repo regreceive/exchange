@@ -243,16 +243,11 @@ module.exports = {
           },
 
           {
-            test: /\.css$/,
-            loader: extractVendorCSS.extract(
+            test: /\.(css|less)$/,
+            use: extractVendorCSS.extract(
               Object.assign(
                 {
-                  fallback: {
-                    loader: require.resolve('style-loader'),
-                    options: {
-                      hmr: false,
-                    },
-                  },
+                  fallback: 'style-loader',
                   use: [
                     {
                       loader: require.resolve('css-loader'),
@@ -260,6 +255,10 @@ module.exports = {
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
                       },
+                    },
+                    {
+                      loader: 'less-loader',
+                      options: { javascriptEnabled: true },
                     },
                   ],
                 },
