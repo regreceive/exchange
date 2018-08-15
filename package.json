@@ -63,7 +63,7 @@
     "start-js": "node scripts/start.js",
     "build": "npm-run-all build-css build-js",
     "build-js": "node scripts/build.js",
-    "build:release": "build-css && node scripts/build.js --release",
+    "build:release": "yarn build-css && node scripts/build.js --release",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
