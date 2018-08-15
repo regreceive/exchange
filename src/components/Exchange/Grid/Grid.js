@@ -5,6 +5,7 @@ import LeftSide from '../LeftSide';
 import Notice from '../Notice';
 import Mscy from '../Mscy';
 import TradePanel from '../TradePanel';
+import Order from '../Order';
 import './Grid.css';
 
 const Grid = () => {
@@ -30,7 +31,9 @@ const Grid = () => {
         <TradePanel />
       </div>
       {/*对手盘*/}
-      <div styleName="order" />
+      <div styleName="order">
+        <Order />
+      </div>
       {/*深度图*/}
       <div styleName="depth" />
       {/*实时成交*/}

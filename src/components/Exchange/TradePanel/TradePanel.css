@@ -1,2 +1,14 @@
 .trade {
   padding: 0 30px; }
+
+.limit div {
+  margin-bottom: 5px;
+  color: #61688a; }
+
+.limit .bg {
+  background-color: rgba(78, 91, 133, 0.4);
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  margin-top: -1px;
+  font-size: 12px; }
