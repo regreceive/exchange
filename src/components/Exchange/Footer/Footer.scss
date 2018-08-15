@@ -3,4 +3,13 @@
     margin-top: -330px;
     height: 330px;
     z-index: 2;
+    .foot-wrap{
+        width:90%;
+        margin: auto;
+        width: 1200px;
+        box-sizing: border-box;
+        padding: 60px 20px 0;
+        display: -ms-flexbox;
+        display: flex;
+    }
 }
