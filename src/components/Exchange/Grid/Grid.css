@@ -11,7 +11,7 @@
 .container {
   padding: 5px;
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 10px;
   background-color: #262a42;
   grid-template-columns: minmax(280px, 360px) minmax(600px, 3fr) minmax(60px, 0.5fr) minmax(280px, 2fr);
   grid-template-rows: 60px 530px 490px 530px 480px;
@@ -28,6 +28,17 @@
 
 .trade-panel {
   grid-area: tp; }
+  .trade-panel :global .ant-tabs-bar {
+    border-bottom: none; }
+  .trade-panel :global .ant-tabs-ink-bar {
+    background-color: #7a98f7; }
+  .trade-panel :global .ant-tabs-nav .ant-tabs-tab-active {
+    color: #7a98f7;
+    border-color: #7a98f7; }
+  .trade-panel :global .ant-tabs-tab:hover {
+    color: #fff; }
+  .trade-panel :global .ant-tabs-tab-active:hover {
+    color: #7a98f7; }
 
 .order {
   grid-area: o; }

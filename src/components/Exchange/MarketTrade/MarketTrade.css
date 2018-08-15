@@ -1,0 +1,24 @@
+.MarketTrade .head {
+  height: 48px;
+  font-size: 16px;
+  line-height: 48px;
+  padding-left: 30px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); }
+
+.MarketTrade .tradebox {
+  padding: 5px 3px 5px 30px; }
+
+.MarketTrade :global .ant-table-thead tr th {
+  border-bottom: none;
+  padding: 3px;
+  background: none; }
+  .MarketTrade :global .ant-table-thead tr th > span {
+    color: #61688a;
+    font-size: 12px; }
+
+.MarketTrade :global .ant-table-tbody tr td {
+  border-bottom: none;
+  padding: 3px; }
+
+.MarketTrade :global .ant-table-tbody > tr:hover > td {
+  background: none; }

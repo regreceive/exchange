@@ -2,16 +2,16 @@ import React from 'react';
 import { Row, Col, Input, Button } from 'antd';
 import './TradePanel.css';
 function callback(key) {}
-const Limit = () => {
+const Market = () => {
   return (
-    <Row type="flex" justify="space-between" styleName="limit">
+    <Row type="flex" justify="space-between" styleName="limit market">
       <Col span="11">
         <div>买入价</div>
         <Input />
-        <p styleName="bg" />
-        <div>买入量</div>
+        {/* <p styleName="bg" /> */}
+        <div>交易额</div>
         <Input />
-        <p styleName="bg" />
+        {/* <p styleName="bg" /> */}
         <p styleName="info">
           交易额 <span>19752869136.000000 BTC</span>
         </p>
@@ -20,10 +20,10 @@ const Limit = () => {
       <Col span="11">
         <div>卖出价</div>
         <Input />
-        <p styleName="bg" />
+        {/* <p styleName="bg" /> */}
         <div>卖出量</div>
         <Input />
-        <p styleName="bg" />
+        {/* <p styleName="bg" /> */}
         <p styleName="info">
           交易额 <span>19752869136.000000 BTC</span>
         </p>
@@ -32,4 +32,4 @@ const Limit = () => {
     </Row>
   );
 };
-export default Limit;
+export default Market;

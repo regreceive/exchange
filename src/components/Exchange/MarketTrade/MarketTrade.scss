@@ -1,26 +1,13 @@
-.Order{
+.MarketTrade{
     .head{
-        background-color: #1b1e2e;
-        padding: 0 30px;
         height: 48px;
-        line-height: 48px;
         font-size: 16px;
-        color: #c7cce6;
-        .uppercase{
-            font-style:normal;
-            text-transform: uppercase;
-        }
-        .ticker{
-            color:#61688a;
-            font-size:12px;
-        }
+        line-height: 48px;
+        padding-left: 30px;
+        box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
     }
-    .orderbox{
-        padding:5px 3px 5px 25px;
-        margin-left: 5px;
-    }
-    .orderbox1{
-        border-bottom:1px solid #1f2943;
+    .tradebox{
+        padding:5px 3px 5px 30px;
     }
     :global{
         .ant-table-thead tr th{
@@ -39,5 +26,5 @@
         .ant-table-tbody > tr:hover > td{
             background:none;
         }
-    }
+    } 
 }

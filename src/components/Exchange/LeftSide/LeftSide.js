@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Table, Input } from 'antd';
+import { Tabs, Table, Input, Icon } from 'antd';
 import './LeftSide.css';
 import Table2 from './Table2';
 import Table1 from './Table1';
@@ -15,7 +15,12 @@ const LeftSide = () => {
       <div styleName="search_wrap">
         <Search onSearch={value => console.log(value)} size="small" />
       </div>
-      <Tabs defaultActiveKey="1" onChange={callback}>
+      <div styleName="switch_wrap" action="switch_quote">
+        {/* <i styleName="hb_icon_split_coin" /> */}
+        <Icon type="swap" />
+        <b>cny</b>
+      </div>
+      <Tabs defaultActiveKey="1" onChange={callback} styleName="tab" size="small">
         <TabPane tab="USDT" key="1">
           <Table1 />
         </TabPane>
@@ -26,6 +31,17 @@ const LeftSide = () => {
           <Table2 />
         </TabPane>
         <TabPane tab="HT" key="4">
+          <Table2 />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <Icon type="star-o" />
+              自选
+            </span>
+          }
+          key="5"
+        >
           <Table2 />
         </TabPane>
       </Tabs>

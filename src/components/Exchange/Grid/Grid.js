@@ -6,6 +6,8 @@ import Notice from '../Notice';
 import Mscy from '../Mscy';
 import TradePanel from '../TradePanel';
 import Order from '../Order';
+import MarketTrade from '../MarketTrade';
+import Chart from '../Chart';
 import './Grid.css';
 
 const Grid = () => {
@@ -25,7 +27,9 @@ const Grid = () => {
         <div />
       </div>
       {/*走势图*/}
-      <div styleName="chart" />
+      <div styleName="chart">
+        <Chart />
+      </div>
       {/*交易面板*/}
       <div styleName="trade-panel">
         <TradePanel />
@@ -37,7 +41,9 @@ const Grid = () => {
       {/*深度图*/}
       <div styleName="depth" />
       {/*实时成交*/}
-      <div styleName="market-trades" />
+      <div styleName="market-trades">
+        <MarketTrade />
+      </div>
       {/*币种信息*/}
       <div styleName="token-details">
         <Mscy />

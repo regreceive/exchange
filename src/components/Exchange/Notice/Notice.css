@@ -9,6 +9,8 @@
     font-size: 16px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
     padding: 0 20px; }
+    .sidebar_notice .tit > a {
+      color: #fff; }
   .sidebar_notice .in {
     padding: 0 20px; }
     .sidebar_notice .in > ul > li {
@@ -25,4 +27,5 @@
         height: 36px;
         margin-bottom: 6px;
         overflow: hidden;
-        line-height: 18px; }
+        line-height: 18px;
+        color: #c7cce6; }

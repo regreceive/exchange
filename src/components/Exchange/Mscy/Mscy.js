@@ -16,7 +16,7 @@ const Mscy = () => {
         <div styleName="mod_bg">
           <div styleName="left">
             <h3>
-              <span>eth</span> 以太坊（Ethereum）
+              <span>eth</span> <span style={{ color: '#fff', fontSize: 14 }}>以太坊（Ethereum</span>
             </h3>
             <div styleName="in">
               <span>简介</span>

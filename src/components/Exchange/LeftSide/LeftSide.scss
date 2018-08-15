@@ -21,7 +21,66 @@
         padding-right: 5px;
         text-align: right;
     }
-    .ant-tabs-bar{
-        margin-bottom: none;
-    }      
+    .tab{
+        padding:0 3px 3px 15px;
+    }
+    .switch_wrap {
+        width: 60px;
+        right: 20px;
+        top: 11px;
+        position: absolute;
+        text-align: center;
+        height: 26px;
+        padding-top: 5px;
+        cursor: pointer;
+        b{
+           color:#7a98f7;
+        }
+    }
+    
+    :global{
+        .ant-tabs-bar{
+            border-bottom: none;
+        }
+        .ant-input{
+            color: #c7cce6;
+            border-color:#4e5b85;
+            background-color: #1e2235;
+        }
+        .ant-input:hover{
+            border-color:#4e5b85; 
+        }
+        .ant-tabs-ink-bar{
+           background-color:#7a98f7;
+        }
+        .ant-table-thead tr th{
+            border-bottom:1px solid #1f2943;
+             padding:3px;
+             background:none;
+        }
+        .ant-table-tbody tr td{
+            border-bottom:1px solid #1f2943;
+            padding:3px; 
+        }
+        .ant-table-tbody > tr:hover > td{
+            background:none;
+        }
+        .ant-tabs-nav .ant-tabs-tab-active{
+            color:#7a98f7;
+            border-color:#7a98f7;
+        }
+        .ant-tabs-tab{
+            margin:0;
+            padding:10px;
+        }
+        .ant-tabs-tab:hover{
+            color:#fff;
+        }
+        .ant-tabs-tab-active:hover{
+            color:#7a98f7;
+        }
+        .ant-table-thead > tr > th.ant-table-column-sort{
+            background:none;
+        }
+    }  
 }
