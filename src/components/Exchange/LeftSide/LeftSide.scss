@@ -35,6 +35,8 @@
         cursor: pointer;
         b{
            color:#7a98f7;
+           text-transform: uppercase;
+           margin-left: 5px;
         }
     }
     
@@ -81,6 +83,9 @@
         }
         .ant-table-thead > tr > th.ant-table-column-sort{
             background:none;
+        }
+        .ant-input-search-icon{
+            color:#4e5b85;
         }
     }  
 }

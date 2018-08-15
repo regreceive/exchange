@@ -8,6 +8,7 @@ import TradePanel from '../TradePanel';
 import Order from '../Order';
 import MarketTrade from '../MarketTrade';
 import Chart from '../Chart';
+import Footer from '../Footer';
 import './Grid.css';
 
 const Grid = () => {
@@ -48,6 +49,9 @@ const Grid = () => {
       <div styleName="token-details">
         <Mscy />
       </div>
+      {/* <div styleName="footer">
+        <Footer />
+      </div> */}
     </div>
   );
 };

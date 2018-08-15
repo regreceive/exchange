@@ -11,3 +11,11 @@
     padding: 60px 20px 0;
     display: -ms-flexbox;
     display: flex; }
+    .footer .foot-wrap .copyright {
+      padding-top: 60px;
+      color: #61688a; }
+    .footer .foot-wrap dl h2 {
+      height: 42px;
+      line-height: 12px;
+      font-size: 12px;
+      font-weight: 400; }

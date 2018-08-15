@@ -31,7 +31,9 @@
     padding-top: 5px;
     cursor: pointer; }
     .drawer .switch_wrap b {
-      color: #7a98f7; }
+      color: #7a98f7;
+      text-transform: uppercase;
+      margin-left: 5px; }
   .drawer :global .ant-tabs-bar {
     border-bottom: none; }
   .drawer :global .ant-input {
@@ -63,3 +65,5 @@
     color: #7a98f7; }
   .drawer :global .ant-table-thead > tr > th.ant-table-column-sort {
     background: none; }
+  .drawer :global .ant-input-search-icon {
+    color: #4e5b85; }

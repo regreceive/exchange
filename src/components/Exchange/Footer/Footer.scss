@@ -11,5 +11,16 @@
         padding: 60px 20px 0;
         display: -ms-flexbox;
         display: flex;
+        .copyright {
+            padding-top: 60px;
+            color: #61688a;
+        }
+        dl h2 {
+            height: 42px;
+            line-height: 12px;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        
     }
 }
