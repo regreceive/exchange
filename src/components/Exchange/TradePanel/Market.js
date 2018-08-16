@@ -7,11 +7,11 @@ const Market = () => {
     <Row type="flex" justify="space-between" styleName="limit market">
       <Col span="11">
         <div>买入价</div>
-        <Input />
-        {/* <p styleName="bg" /> */}
+        <Input size="large" />
+        <span styleName="unit">usdt</span>
         <div>交易额</div>
-        <Input />
-        {/* <p styleName="bg" /> */}
+        <Input size="large" />
+        <span styleName="unit-u">usdt</span>
         <p styleName="info">
           交易额 <span>19752869136.000000 BTC</span>
         </p>
@@ -19,11 +19,11 @@ const Market = () => {
       </Col>
       <Col span="11">
         <div>卖出价</div>
-        <Input />
-        {/* <p styleName="bg" /> */}
+        <Input size="large" />
+        <span styleName="unit">usdt</span>
         <div>卖出量</div>
-        <Input />
-        {/* <p styleName="bg" /> */}
+        <Input size="large" />
+        <span styleName="unit-u">ltc</span>
         <p styleName="info">
           交易额 <span>19752869136.000000 BTC</span>
         </p>

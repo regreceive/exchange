@@ -7,6 +7,23 @@
         margin-bottom: 5px;
         color:#61688a;
     }
+    .unit{
+        position: absolute;
+        top: 26px;
+        right: 20px;
+        height: 40px;
+        line-height: 40px; 
+        color:#61688a;
+        text-transform: uppercase;  
+    }
+    .unit-u{
+        position: absolute;
+        right: 20px;
+        height: 40px;
+        line-height: 40px; 
+        color:#61688a;
+        text-transform: uppercase; 
+    }
     .bg{
         background-color: rgba(78,91,133,.4);
         height: 24px;

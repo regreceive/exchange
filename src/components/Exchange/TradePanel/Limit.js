@@ -7,10 +7,12 @@ const Limit = () => {
     <Row type="flex" justify="space-between" styleName="limit">
       <Col span="11">
         <div>买入价</div>
-        <Input />
+        <Input size="large" />
+        <span styleName="unit">usdt</span>
         <p styleName="bg" />
         <div>买入量</div>
-        <Input />
+        <Input size="large" />
+        <span styleName="unit-u">ltc</span>
         <p styleName="bg" />
         <p styleName="info">
           交易额 <span>19752869136.000000 BTC</span>
@@ -19,10 +21,12 @@ const Limit = () => {
       </Col>
       <Col span="11">
         <div>卖出价</div>
-        <Input />
+        <Input size="large" />
+        <span styleName="unit">usdt</span>
         <p styleName="bg" />
         <div>卖出量</div>
-        <Input />
+        <Input size="large" />
+        <span styleName="unit-u">ltc</span>
         <p styleName="bg" />
         <p styleName="info">
           交易额 <span>19752869136.000000 BTC</span>
