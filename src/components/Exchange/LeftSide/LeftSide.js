@@ -36,7 +36,7 @@ const LeftSide = () => {
         <TabPane
           tab={
             <span>
-              <Icon type="star-o" />
+              <Icon type="star" />
               自选
             </span>
           }

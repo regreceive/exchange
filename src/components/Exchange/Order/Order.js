@@ -52,7 +52,7 @@ const Order = () => {
     },
     {
       title: '累计(ETH)',
-      dataIndex: 'address',
+      dataIndex: 'key',
       key: 'key',
       width: '25%',
     },

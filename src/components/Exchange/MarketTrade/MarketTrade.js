@@ -49,8 +49,8 @@ const MarketTrade = () => {
     },
     {
       title: '数量(ETC)',
-      dataIndex: 'address',
-      key: 'address',
+      dataIndex: 'key',
+      key: 'key',
       width: '25%',
     },
   ];
