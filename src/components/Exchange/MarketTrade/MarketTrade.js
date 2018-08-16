@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Icon } from 'antd';
 import './MarketTrade.css';
 const data = [
   {
@@ -57,7 +57,8 @@ const MarketTrade = () => {
   return (
     <div styleName="MarketTrade">
       <div styleName="head">
-        <span>实时成交</span>
+        <Icon type="down" />
+        <span styleName="Trade-info">实时成交</span>
       </div>
       <Table columns={columns} dataSource={data} onChange={this.handleChange} pagination={false} styleName="tradebox" />
     </div>

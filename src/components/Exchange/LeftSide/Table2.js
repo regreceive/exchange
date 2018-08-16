@@ -50,9 +50,9 @@ const Table2 = () => {
       sorter: (a, b) => a.address - b.address,
       render: (text, record) => {
         return text.substr(0, 1) == '+' ? (
-          <span style={{ color: '#589065' }}>{text}</span>
+          <span style={{ color: '#589065' }}>{text}%</span>
         ) : (
-          <span style={{ color: '#ae4e54' }}>{text}</span>
+          <span style={{ color: '#ae4e54' }}>{text}%</span>
         );
       },
     },

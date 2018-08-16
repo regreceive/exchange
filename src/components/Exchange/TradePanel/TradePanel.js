@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Input } from 'antd';
+import { Tabs } from 'antd';
 import './TradePanel.css';
 import Limit from './Limit';
 import Market from './Market';
@@ -9,7 +9,7 @@ function callback(key) {
 }
 const TradePanel = () => {
   return (
-    <div styleName="trade">
+    <div>
       <Tabs defaultActiveKey="1" onChange={callback}>
         <TabPane tab="限价交易" key="1">
           <Limit />

@@ -7,7 +7,9 @@
     height: 48px;
     font-size: 16px;
     line-height: 48px;
-    padding: 0 40px 0 30px; }
+    padding: 0 40px 0 15px; }
+    .coin_detail .mod .mod_hd .mod_detail {
+      padding-left: 6px; }
     .coin_detail .mod .mod_hd > a {
       float: right;
       font-size: 14px;
