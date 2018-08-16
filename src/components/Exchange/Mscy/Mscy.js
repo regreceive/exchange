@@ -6,9 +6,9 @@ const Mscy = () => {
       <div styleName="mod">
         <div styleName="mod_hd">
           <span styleName="mod_show_btn">
-            <button>
+            {/* <button>
               <i />
-            </button>
+            </button> */}
             <span>币种资料</span>
           </span>
           <a href="#">了解更多</a>
