@@ -20,7 +20,12 @@ const LeftSide = () => {
         <Icon type="swap" />
         <b>cny</b>
       </div>
-      <Tabs defaultActiveKey="1" onChange={callback} styleName="tab" size="small">
+      <Tabs
+        defaultActiveKey="1"
+        onChange={callback}
+        styleName="tab"
+        size="small"
+      >
         <TabPane tab="USDT" key="1">
           <Table1 />
         </TabPane>

@@ -41,7 +41,12 @@ export function calculateDest(source, rate) {
 
 export function caculateSourceAmount(destAmount, offeredRate, precision) {
   console.log({ destAmount, offeredRate, precision });
-  if (!destAmount || !offeredRate || acceptableTyping(destAmount) || acceptableTyping(offeredRate)) {
+  if (
+    !destAmount ||
+    !offeredRate ||
+    acceptableTyping(destAmount) ||
+    acceptableTyping(offeredRate)
+  ) {
     return '0';
   }
   let bigOfferedRate = new BigNumber(offeredRate);
@@ -61,7 +66,12 @@ export function caculateSourceAmount(destAmount, offeredRate, precision) {
 }
 
 export function caculateDestAmount(sourceAmount, offeredRate, precision) {
-  if (!sourceAmount || !offeredRate || acceptableTyping(sourceAmount) || acceptableTyping(offeredRate)) {
+  if (
+    !sourceAmount ||
+    !offeredRate ||
+    acceptableTyping(sourceAmount) ||
+    acceptableTyping(offeredRate)
+  ) {
     return '0';
   }
   const bigSource = new BigNumber(sourceAmount);
@@ -337,7 +347,9 @@ export function roundingNumber(number) {
 
   let minDisplay = MAX_DIGIS - count_0 < 4 ? 4 : MAX_DIGIS - count_0;
 
-  let precision = number.toPrecision(number < 1 && number > 0 ? minDisplay : MAX_DIGIS),
+  let precision = number.toPrecision(
+      number < 1 && number > 0 ? minDisplay : MAX_DIGIS,
+    ),
     arr = precision.split('.'),
     intPart = arr[0],
     i = intPart.length % SIZE || SIZE,
@@ -371,7 +383,13 @@ export function caculateTokenEpsilon(rate, decimal, symbol) {
   return ts.div(tokenRate);
 }
 
-export function getDifferentAmount(sourceAmount, prevAmount, sourceDecimal, minRate, sourceTokenSymbol) {
+export function getDifferentAmount(
+  sourceAmount,
+  prevAmount,
+  sourceDecimal,
+  minRate,
+  sourceTokenSymbol,
+) {
   if (sourceAmount === '' || isNaN(sourceAmount)) sourceAmount = 0;
   if (sourceTokenSymbol === 'ETH') {
     return Math.abs(sourceAmount - prevAmount);
@@ -477,14 +495,18 @@ export function formatNumber(number) {
 
 export function caculatorPercentageToRate(number, total) {
   if (new BigNumber(total) !== 0) {
-    return (new BigNumber(number) / new BigNumber(total)) * 100000000000000000000;
+    return (
+      (new BigNumber(number) / new BigNumber(total)) * 100000000000000000000
+    );
   }
   return 0;
 }
 
 export function caculatorRateToPercentage(number, total) {
   if (new BigNumber(total) !== 0) {
-    return (new BigNumber(number) * new BigNumber(total)) / 100000000000000000000;
+    return (
+      (new BigNumber(number) * new BigNumber(total)) / 100000000000000000000
+    );
   }
   return 0;
 }
@@ -514,11 +536,18 @@ export function getMinrate(rate, minRate) {
   }
 }
 
-export function calculateMinSource(sourceTokenSymbol, sourceAmount, decimal, rateSell) {
+export function calculateMinSource(
+  sourceTokenSymbol,
+  sourceAmount,
+  decimal,
+  rateSell,
+) {
   console.log({ sourceAmount, decimal, rateSell });
   if (sourceAmount === '' || isNaN(sourceAmount)) sourceAmount = 0;
 
-  const minSourceAllow = new BigNumber(getSourceAmountZero(sourceTokenSymbol, decimal, rateSell));
+  const minSourceAllow = new BigNumber(
+    getSourceAmountZero(sourceTokenSymbol, decimal, rateSell),
+  );
 
   let sourceAmountBig = new BigNumber(sourceAmount.toString());
   sourceAmountBig = sourceAmountBig.times(Math.pow(10, decimal));

@@ -14,7 +14,11 @@ const LayoutView = props => {
       <div>
         <section id="content">
           <Switch>
-            <Route exact path={constants.BASE_HOST + '/exchange'} component={props.exchange} />
+            <Route
+              exact
+              path={constants.BASE_HOST + '/exchange'}
+              component={props.exchange}
+            />
             <Redirect to={defaultPathExchange} />
           </Switch>
         </section>

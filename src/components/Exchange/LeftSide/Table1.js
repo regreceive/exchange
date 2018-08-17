@@ -57,6 +57,13 @@ const Table1 = () => {
       },
     },
   ];
-  return <Table columns={columns} dataSource={data} onChange={this.handleChange} pagination={false} />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={data}
+      onChange={this.handleChange}
+      pagination={false}
+    />
+  );
 };
 export default Table1;

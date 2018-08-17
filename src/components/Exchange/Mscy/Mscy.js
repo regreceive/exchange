@@ -15,7 +15,10 @@ const Mscy = () => {
         <div styleName="mod_bg">
           <div styleName="left">
             <h3>
-              <span>eth</span> <span style={{ color: '#fff', fontSize: 14 }}>以太坊（Ethereum</span>
+              <span>eth</span>{' '}
+              <span style={{ color: '#fff', fontSize: 14 }}>
+                以太坊（Ethereum
+              </span>
             </h3>
             <div styleName="in">
               <span>简介</span>
@@ -53,7 +56,11 @@ const Mscy = () => {
               <li>
                 <span>官网</span>
                 <p>
-                  <a href="https://www.ethereum.org/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.ethereum.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     https://www.ethereum.org/
                   </a>
                 </p>
@@ -61,7 +68,11 @@ const Mscy = () => {
               <li>
                 <span>区块查询</span>
                 <p>
-                  <a href="https://etherscan.io/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://etherscan.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     https://etherscan.io/
                   </a>
                 </p>

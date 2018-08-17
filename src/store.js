@@ -25,7 +25,11 @@ const composedEnhancers = compose(
   ...enhancers,
 );
 
-const store = createStore(connectRouter(history)(rootReducer), initialState, composedEnhancers);
+const store = createStore(
+  connectRouter(history)(rootReducer),
+  initialState,
+  composedEnhancers,
+);
 
 initLanguage(store);
 

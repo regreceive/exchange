@@ -69,11 +69,15 @@ export default class Layout extends React.Component {
   }
 
   setActiveLanguage = language => {
-    this.props.dispatch(changeLanguage(this.props.ethereumNode, language, this.props.locale));
+    this.props.dispatch(
+      changeLanguage(this.props.ethereumNode, language, this.props.locale),
+    );
   };
 
   render() {
-    const currentLanguage = common.getActiveLanguage(this.props.locale.languages);
+    const currentLanguage = common.getActiveLanguage(
+      this.props.locale.languages,
+    );
     return (
       <LayoutView
         history={history}

@@ -195,7 +195,11 @@ const market = (state = initState, action) => {
       configs.isLoading = false;
       configs.page = 1;
       sortedTokens = newSortedTokens;
-      return { ...newState, configs: { ...configs }, sortedTokens: sortedTokens };
+      return {
+        ...newState,
+        configs: { ...configs },
+        sortedTokens: sortedTokens,
+      };
     }
 
     case 'MARKET.GET_MORE_DATA_SUCCESS': {
@@ -243,10 +247,16 @@ const market = (state = initState, action) => {
         tokens[key].USD.change = tokens[key].ETH.change = change;
         if (newTokens[key] && token.quotes) {
           newTokens[key].ETH.market_cap = token.quotes.ETH.market_cap;
-          newTokens[key].ETH.volume = token.quotes.ETH.volume_24h ? Math.round(token.quotes.ETH.volume_24h) : 0;
+          newTokens[key].ETH.volume = token.quotes.ETH.volume_24h
+            ? Math.round(token.quotes.ETH.volume_24h)
+            : 0;
 
-          newTokens[key].USD.market_cap = Math.round(token.quotes.ETH.market_cap * rateUSD);
-          newTokens[key].USD.volume = token.quotes.USD.volume_24h ? Math.round(token.quotes.USD.volume_24h) : 0;
+          newTokens[key].USD.market_cap = Math.round(
+            token.quotes.ETH.market_cap * rateUSD,
+          );
+          newTokens[key].USD.volume = token.quotes.USD.volume_24h
+            ? Math.round(token.quotes.USD.volume_24h)
+            : 0;
         }
       });
       return { ...newState, tokens: { ...tokens } };
@@ -276,14 +286,22 @@ const market = (state = initState, action) => {
         if (rate.source !== 'ETH') {
           if (tokens[rate.source]) {
             const sellPriceETH = converters.convertSellRate(rate.rate);
-            tokens[rate.source].ETH.sellPrice = parseFloat(converters.roundingNumber(sellPriceETH));
-            tokens[rate.source].USD.sellPrice = parseFloat(converters.roundingNumber(sellPriceETH * rateUSD));
+            tokens[rate.source].ETH.sellPrice = parseFloat(
+              converters.roundingNumber(sellPriceETH),
+            );
+            tokens[rate.source].USD.sellPrice = parseFloat(
+              converters.roundingNumber(sellPriceETH * rateUSD),
+            );
           }
         } else {
           if (tokens[rate.dest]) {
             var buyPriceETH = converters.convertBuyRate(rate.rate);
-            tokens[rate.dest].ETH.buyPrice = parseFloat(converters.roundingNumber(buyPriceETH));
-            tokens[rate.dest].USD.buyPrice = parseFloat(converters.roundingNumber(buyPriceETH * rateUSD));
+            tokens[rate.dest].ETH.buyPrice = parseFloat(
+              converters.roundingNumber(buyPriceETH),
+            );
+            tokens[rate.dest].USD.buyPrice = parseFloat(
+              converters.roundingNumber(buyPriceETH * rateUSD),
+            );
           }
         }
       });
