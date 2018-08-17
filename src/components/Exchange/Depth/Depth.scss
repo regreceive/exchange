@@ -1,0 +1,13 @@
+.depth{
+    .hd{
+        padding-left: 15px;
+        box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
+        height:48px;
+        line-height: 48px;
+        font-size: 16px;
+        background:#1b1e2e;
+        .depth-info{
+            padding-left:6px;
+        }
+    }
+}

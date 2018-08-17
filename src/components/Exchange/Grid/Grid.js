@@ -8,6 +8,7 @@ import TradePanel from '../TradePanel';
 import Order from '../Order';
 import MarketTrade from '../MarketTrade';
 import Chart from '../Chart';
+import Depth from '../Depth';
 import './Grid.css';
 
 const Grid = () => {
@@ -37,7 +38,9 @@ const Grid = () => {
         <Order />
       </div>
       {/*深度图*/}
-      <div styleName="depth" />
+      <div styleName="depth">
+        <Depth />
+      </div>
       {/*实时成交*/}
       <div styleName="market-trades">
         <MarketTrade />
@@ -46,9 +49,6 @@ const Grid = () => {
       <div styleName="token-details">
         <Mscy />
       </div>
-      {/* <div styleName="footer">
-        <Footer />
-      </div> */}
     </div>
   );
 };

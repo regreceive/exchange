@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from 'antd';
 import './Mscy.css';
 const Mscy = () => {
   return (
@@ -6,10 +7,8 @@ const Mscy = () => {
       <div styleName="mod">
         <div styleName="mod_hd">
           <span styleName="mod_show_btn">
-            <button>
-              <i />
-            </button>
-            <span>币种资料</span>
+            <Icon type="down" />
+            <span styleName="mod_detail">币种资料</span>
           </span>
           <a href="#">了解更多</a>
         </div>
