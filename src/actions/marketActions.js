@@ -5,6 +5,13 @@ export function changeSearchWord(value) {
   };
 }
 
+export function changeCoin(value) {
+  return {
+    type: 'MARKET.CHANGE_COIN',
+    payload: value,
+  };
+}
+
 export function resetListToken(searchWord) {
   return {
     type: 'MARKET.RESET_LIST_TOKEN',

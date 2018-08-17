@@ -1,26 +1,29 @@
 .footer {
-    position: relative;
-    margin-top: -330px;
-    height: 330px;
-    z-index: 2;
-    .foot-wrap{
-        width:90%;
-        margin: auto;
-        width: 1200px;
-        box-sizing: border-box;
-        padding: 60px 20px 0;
-        display: -ms-flexbox;
-        display: flex;
-        .copyright {
-            padding-top: 60px;
-            color: #61688a;
-        }
-        dl h2 {
-            height: 42px;
-            line-height: 12px;
-            font-size: 12px;
-            font-weight: 400;
-        }
-        
+  position: relative;
+  height: 330px;
+  margin-top: -330px;
+  z-index: 2;
+
+  .foot-wrap {
+    display: -ms-flexbox;
+    display: flex;
+    box-sizing: border-box;
+    width:90%;
+    width: 1200px;
+    padding: 60px 20px 0;
+    margin: auto;
+
+    .copyright {
+      padding-top: 60px;
+      color: #61688a;
     }
+
+    dl h2 {
+      height: 42px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 12px;
+    }
+        
+  }
 }

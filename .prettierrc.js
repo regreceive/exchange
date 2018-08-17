@@ -2,7 +2,7 @@
 // https://prettier.io/docs/en/configuration.html
 module.exports = {
   semi: true,
-  printWidth: 120,
+  printWidth: 80,
   singleQuote: true,
   trailingComma: 'all',
 };

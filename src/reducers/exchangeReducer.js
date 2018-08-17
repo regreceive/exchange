@@ -1,114 +1,55 @@
-import constants from '../services/constants';
 import * as converters from '../utils/converter';
 
 const initState = (function() {
   const tokens = {};
-  ['ETH', 'ETC'].forEach(key => {
-    tokens[key] = {};
-
-    tokens[key].circulatingSupply = 0;
-
-    tokens[key]['ETH'] = {
-      sellPrice: 0,
-      buyPrice: 0,
-      market_cap: 0,
-      circulating_supply: 0,
-      total_supply: 0,
-      last_7d: 0,
-      change: -9999,
-      volume: 0,
-    };
-
-    tokens[key]['USDT'] = {
-      sellPrice: 0,
-      buyPrice: 0,
-      market_cap: 0,
-      circulating_supply: 0,
-      total_supply: 0,
-      last_7d: 0,
-      change: -9999,
-      volume: 0,
+  ['BTC', 'BCH', 'ETH', 'LTC'].forEach(key => {
+    tokens[key] = {
+      USDT: {
+        price: 0,
+        change: 0,
+      },
+      ETH: {
+        price: 0,
+        change: 0,
+      },
+      BTC: {
+        price: 0,
+        change: 0,
+      },
     };
   });
+
   const sortedTokens = [];
   return {
     tokens,
     sortedTokens,
     configs: {
+      itemCoin: 'USDT',
       isShowTradingChart: false,
-      page: 1,
-      firstPageSize: 20,
-      normalPageSize: 15,
-      numScroll: 5,
       sortKey: '',
       sortType: {},
       isLoading: false,
-      selectedSymbol: 'KNC',
       searchWord: '',
-      currency: {
-        listItem: {
-          ETH: 'ETH',
-          USD: 'USD',
-        },
-        focus: 'ETH',
-      },
-      sort: {
-        listItem: {
-          highest_price: 'Highest price',
-          lowest_price: 'Lowest price',
-        },
-        focus: 'highest_price',
-      },
-      column: {
-        display: {
-          listItem: {
-            B: 'Bold Columns',
-            S: 'Standard Columns',
-            T: 'Tine Columns',
-          },
-          active: 'B',
-        },
-        shows: {
-          listItem: {
-            change: { title: '24HR Change' },
-            volume: { title: 'Volume (24h)' },
-            market_cap: { title: 'Market cap' },
-            last_7d: { title: 'Last 7d', type: 'chart' },
-          },
-          active: ['change', 'last_7d'],
-        },
-      },
     },
-    count: { storageKey: constants.STORAGE_KEY },
   };
 })();
 
-const market = (state = initState, action) => {
+const exchange = (state = initState, action) => {
   const newState = { ...state };
   switch (action.type) {
-    // case REHYDRATE: {
-    //     if (action.key === "market") {
-    //         if (action.payload) {
-    //             var {tokens, count, configs} = action.payload
-
-    //             if (action.payload.count && action.payload.count.storageKey === constants.STORAGE_KEY) {
-    //                 return {...state, tokens:{...tokens},  count: { storageKey: constants.STORAGE_KEY }, configs: {...configs}}
-    //             }else{
-    //                 return initState
-    //             }
-
-    //         } else {
-    //             return initState
-    //         }
-    //     }
-    //     return initState
-    // }
     case 'MARKET.CHANGE_SEARCH_WORD': {
       const searchWord = action.payload;
       const configs = newState.configs;
       configs.searchWord = searchWord;
       return { ...newState, configs: { ...configs }, sortedTokens: [] };
     }
+    case 'MARKET.CHANGE_COIN': {
+      const value = action.payload;
+      const configs = newState.configs;
+      configs.itemCoin = value;
+      return { ...newState, configs: { ...configs } };
+    }
+
     case 'MARKET.CHANGE_CURRENCY': {
       const value = action.payload;
       const configs = newState.configs;
@@ -313,4 +254,4 @@ const market = (state = initState, action) => {
   }
 };
 
-export default market;
+export default exchange;
