@@ -1,10 +1,10 @@
 .Order .head {
-  background-color: #1b1e2e;
-  padding: 0 30px;
   height: 48px;
-  line-height: 48px;
+  padding: 0 30px;
+  color: #c7cce6;
+  background-color: #1b1e2e;
   font-size: 16px;
-  color: #c7cce6; }
+  line-height: 48px; }
   .Order .head .uppercase {
     font-style: normal;
     text-transform: uppercase; }
@@ -20,16 +20,16 @@
   border-bottom: 1px solid #1f2943; }
 
 .Order :global .ant-table-thead tr th {
-  border-bottom: none;
   padding: 3px;
+  border-bottom: none;
   background: none; }
   .Order :global .ant-table-thead tr th > span {
     color: #61688a;
     font-size: 12px; }
 
 .Order :global .ant-table-tbody tr td {
-  border-bottom: none;
-  padding: 3px; }
+  padding: 3px;
+  border-bottom: none; }
 
 .Order :global .ant-table-tbody > tr:hover > td {
   background: none; }

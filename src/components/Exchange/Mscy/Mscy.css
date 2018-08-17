@@ -3,25 +3,25 @@
   margin-bottom: 10px;
   transition: height .15s ease-in-out; }
   .coin_detail .mod .mod_hd {
-    padding-left: 10px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
     height: 48px;
-    font-size: 16px;
-    line-height: 48px;
+    padding: 0 40px;
+    padding-left: 10px;
     padding-left: 30px;
-    padding: 0 40px; }
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    line-height: 48px; }
     .coin_detail .mod .mod_hd > a {
       float: right;
-      font-size: 14px;
-      color: #7a98f7; }
+      color: #7a98f7;
+      font-size: 14px; }
     .coin_detail .mod .mod_hd .mod_show_btn {
-      cursor: pointer;
+      float: left;
       display: -ms-flexbox;
       display: flex;
-      -ms-flex-align: center;
       align-items: center;
-      float: left;
       height: inherit;
+      cursor: pointer;
+      -ms-flex-align: center;
       -moz-user-select: none;
       -webkit-user-select: none;
       -ms-user-select: none;
@@ -33,39 +33,39 @@
       width: 35%;
       padding-bottom: 14px; }
       .coin_detail .mod .mod_bg .left > h3 {
-        font-weight: 400;
         height: 88px;
         padding-top: 10px;
-        border-bottom: 1px solid #1f2943; }
+        border-bottom: 1px solid #1f2943;
+        font-weight: 400; }
         .coin_detail .mod .mod_bg .left > h3 > span {
-          font-size: 24px;
           display: block;
           height: 44px;
+          color: #61688a;
           font-style: normal;
-          text-transform: uppercase;
-          color: #61688a; }
+          font-size: 24px;
+          text-transform: uppercase; }
       .coin_detail .mod .mod_bg .left .in > span {
         display: block;
         padding: 22px 0 10px;
         color: #61688a; }
       .coin_detail .mod .mod_bg .left .in > p {
-        line-height: 24px;
-        font-size: 13px; }
+        font-size: 13px;
+        line-height: 24px; }
     .coin_detail .mod .mod_bg .right {
       float: right;
       width: 53%;
       font-size: 13px; }
       .coin_detail .mod .mod_bg .right li {
         height: 48px;
-        line-height: 48px;
-        border-bottom: 1px solid #1f2943; }
+        border-bottom: 1px solid #1f2943;
+        line-height: 48px; }
         .coin_detail .mod .mod_bg .right li > span {
           float: left;
           width: 30%;
+          color: #61688a;
           overflow: hidden;
           text-overflow: ellipsis;
-          white-space: nowrap;
-          color: #61688a; }
+          white-space: nowrap; }
         .coin_detail .mod .mod_bg .right li > p {
           width: 70%;
           overflow: hidden;

@@ -1,43 +1,51 @@
-.Order{
-    .head{
-        background-color: #1b1e2e;
-        padding: 0 30px;
-        height: 48px;
-        line-height: 48px;
-        font-size: 16px;
-        color: #c7cce6;
-        .uppercase{
-            font-style:normal;
-            text-transform: uppercase;
-        }
-        .ticker{
-            color:#61688a;
-            font-size:12px;
-        }
+.Order {
+  .head {
+    height: 48px;
+    padding: 0 30px;
+    color: #c7cce6;
+    background-color: #1b1e2e;
+    font-size: 16px;
+    line-height: 48px;
+
+    .uppercase {
+      font-style:normal;
+      text-transform: uppercase;
     }
-    .orderbox{
-        padding:5px 3px 5px 25px;
-        margin-left: 5px;
+
+    .ticker {
+      color:#61688a;
+      font-size:12px;
     }
-    .orderbox1{
-        border-bottom:1px solid #1f2943;
+  }
+
+  .orderbox {
+    padding:5px 3px 5px 25px;
+    margin-left: 5px;
+  }
+
+  .orderbox1 {
+    border-bottom:1px solid #1f2943;
+  }
+
+  :global {
+    .ant-table-thead tr th {
+      padding:3px;
+      border-bottom:none;
+      background:none;
+
+      > span {
+        color:#61688a;
+        font-size:12px;
+      }
     }
-    :global{
-        .ant-table-thead tr th{
-            border-bottom:none;
-             padding:3px;
-             background:none;
-             >span{
-                color:#61688a;
-                font-size:12px;
-             }
-        }
-        .ant-table-tbody tr td{
-            border-bottom:none;
-            padding:3px; 
-        }
-        .ant-table-tbody > tr:hover > td{
-            background:none;
-        }
+
+    .ant-table-tbody tr td {
+      padding:3px;
+      border-bottom:none; 
     }
+
+    .ant-table-tbody > tr:hover > td {
+      background:none;
+    }
+  }
 }

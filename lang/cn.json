@@ -3,6 +3,16 @@
   "pack_icon": "cn.svg",
   "pack_label": "中文",
   "pack_active": true,
+
+  "exchange": {
+    "markets": "市场",
+    "marked": "自选",
+    "coin": "币种",
+    "last_price": "最新价",
+    "change": "涨幅"
+  },
+
+
   "layout": {
     "info": "信息",
     "terms_of_service": "服务条款",
@@ -27,7 +37,7 @@
     "search": "搜索"
   },
 
-  
+
   "transaction": {
     "exchange": "交易",
     "exchange_from": "从",
@@ -256,7 +266,7 @@
     "warning": "请不要发送以太或代币到以上的任何地址.<br></br>他们都是测试网络的地址！",
     "here": "这里"
   },
-  
+
   "footer": {
     "info": "信息",
     "language": "语音"

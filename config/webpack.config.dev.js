@@ -108,7 +108,7 @@ module.exports = {
         use: [
           {
             options: {
-              fix: true,
+              // fix: true,
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
             },

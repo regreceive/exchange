@@ -32,7 +32,10 @@ export function initLanguage(store) {
 
   store.dispatch(
     initialize({
-      languages: [{ name: 'English', code: 'en' }, { name: 'Chinese', code: 'cn' }],
+      languages: [
+        { name: 'English', code: 'en' },
+        { name: 'Chinese', code: 'cn' },
+      ],
       options: {
         renderToStaticMarkup,
         missingTranslationCallback: () => {

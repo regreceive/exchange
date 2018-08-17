@@ -1,21 +1,21 @@
 .footer {
   position: relative;
-  margin-top: -330px;
   height: 330px;
+  margin-top: -330px;
   z-index: 2; }
   .footer .foot-wrap {
-    width: 90%;
-    margin: auto;
-    width: 1200px;
-    box-sizing: border-box;
-    padding: 60px 20px 0;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    box-sizing: border-box;
+    width: 90%;
+    width: 1200px;
+    padding: 60px 20px 0;
+    margin: auto; }
     .footer .foot-wrap .copyright {
       padding-top: 60px;
       color: #61688a; }
     .footer .foot-wrap dl h2 {
       height: 42px;
-      line-height: 12px;
+      font-weight: 400;
       font-size: 12px;
-      font-weight: 400; }
+      line-height: 12px; }

@@ -10,13 +10,11 @@ import history from '../../history';
 import { clearSession, changeLanguage } from '../../actions/globalActions';
 import { openInfoModal } from '../../actions/utilActions';
 import { LayoutView } from '../../components/Layout';
-import * as common from '../../utils/common';
 
 import Language from 'lang';
 
 @connect(store => {
   return {
-    ui: store.ui,
     translate: getTranslate(store.locale),
     locale: store.locale,
     currentLanguage: getActiveLanguage(store.locale).code,
@@ -69,18 +67,19 @@ export default class Layout extends React.Component {
   }
 
   setActiveLanguage = language => {
-    this.props.dispatch(changeLanguage(this.props.ethereumNode, language, this.props.locale));
+    this.props.dispatch(
+      changeLanguage(this.props.ethereumNode, language, this.props.locale),
+    );
   };
 
   render() {
-    const currentLanguage = common.getActiveLanguage(this.props.locale.languages);
     return (
       <LayoutView
         history={history}
         exchange={Exchange}
         supportedLanguages={Language.supportLanguage}
         setActiveLanguage={this.setActiveLanguage}
-        currentLanguage={currentLanguage}
+        currentLanguage={this.props.currentLanguage}
       />
     );
   }

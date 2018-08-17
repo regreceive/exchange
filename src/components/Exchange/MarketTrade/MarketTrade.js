@@ -59,7 +59,13 @@ const MarketTrade = () => {
       <div styleName="head">
         <span>实时成交</span>
       </div>
-      <Table columns={columns} dataSource={data} onChange={this.handleChange} pagination={false} styleName="tradebox" />
+      <Table
+        columns={columns}
+        dataSource={data}
+        onChange={this.handleChange}
+        pagination={false}
+        styleName="tradebox"
+      />
     </div>
   );
 };

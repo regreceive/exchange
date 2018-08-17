@@ -76,7 +76,13 @@ const Order = () => {
         pagination={false}
         styleName="orderbox orderbox1"
       />
-      <Table columns={columns} dataSource={data} onChange={this.handleChange} pagination={false} styleName="orderbox" />
+      <Table
+        columns={columns}
+        dataSource={data}
+        onChange={this.handleChange}
+        pagination={false}
+        styleName="orderbox"
+      />
     </div>
   );
 };
