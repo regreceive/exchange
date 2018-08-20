@@ -1,0 +1,2 @@
+export const INIT_DEPTH_DATA = 'INIT_DEPTH_DATA';
+export const DEPTH_DATA_ADD = 'DEPTH_DATA_ADD';
