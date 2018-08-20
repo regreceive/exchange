@@ -1,11 +1,11 @@
 import io from 'socket.io-client';
 
-const socket = io('http://localhost', {
-  path: '/exchange',
-  autoConnect: true,
-});
-
-export { socket };
+export function createWebSocketConnection() {
+  return io('ws://localhost:8000', {
+    path: '/exchange',
+    autoConnect: true,
+  });
+}
 
 /*
 export function subscribe(name) {

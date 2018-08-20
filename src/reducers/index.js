@@ -4,11 +4,9 @@ import session from 'redux-persist/lib/storage/session';
 import { localizeReducer as locale } from 'react-localize-redux';
 
 import exchange from './exchangeReducer';
-import connection from './exchangeReducer';
 
 const appReducer = combineReducers({
   locale,
-
   exchange: persistReducer(
     {
       key: 'exchange',

@@ -9,13 +9,17 @@ import { getMarketData } from '../../actions/marketActions';
 @connect(store => {
   let { markets } = store.exchange;
   const itemCoin = store.exchange.configs.itemCoin;
-  markets = Object.keys(markets).map(key => {
-    return {
-      coin: key,
-      price: markets[key][itemCoin].price,
-      change: markets[key][itemCoin].change,
-      key,
-    };
+  markets = Object.keys(markets.coin).map(key => {
+    if (itemCoin === markets.trans) {
+      return {
+        coin: key,
+        price: markets.coin[key].price,
+        change: markets.coin[key].change,
+        key,
+      };
+    } else {
+      return {};
+    }
   });
 
   return {

@@ -7,7 +7,6 @@ import { Grid as Exchange } from '../../components/Exchange/';
 import constant from '../../services/constants';
 
 import history from '../../history';
-import { createNewConnectionInstance } from '../../actions/connectionActions';
 import { clearSession, changeLanguage } from '../../actions/globalActions';
 import { openInfoModal } from '../../actions/utilActions';
 import { LayoutView } from '../../components/Layout';
@@ -37,8 +36,6 @@ export default class Layout extends React.Component {
     document.onclick = this.resetTimer; // touchpad clicks
     document.onscroll = this.resetTimer; // scrolling with arrow keys
     document.onkeypress = this.resetTimer;
-
-    this.props.dispatch(createNewConnectionInstance());
 
     // this.intervalIdle = setInterval(this.checkTimmer.bind(this), 10000);
   }

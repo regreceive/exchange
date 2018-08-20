@@ -1,23 +1,14 @@
 import * as converters from '../utils/converter';
 
 const initState = (function() {
-  const markets = {};
+  const coin = {};
   ['BTC', 'BCH', 'ETH', 'LTC'].forEach(key => {
-    markets[key] = {
-      USDT: {
-        price: 0,
-        change: 0,
-      },
-      ETH: {
-        price: 0,
-        change: 1,
-      },
-      BTC: {
-        price: 0,
-        change: -0.2,
-      },
+    coin[key] = {
+      price: 0,
+      change: 0,
     };
   });
+  const markets = { trans: 'USDT', coin };
 
   return {
     markets,
