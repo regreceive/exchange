@@ -1,8 +1,9 @@
 import React from 'react';
 import { Input, Icon } from 'antd';
 
-import './MarketView.css';
 import List from '../../../containers/Exchange/List';
+
+import './MarketView.css';
 
 const MarketView = ({ translate, searchHandle, changeCoin }) => {
   return (

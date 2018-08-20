@@ -1,33 +1,29 @@
 import * as converters from '../utils/converter';
 
 const initState = (function() {
-  const tokens = {};
+  const markets = {};
   ['BTC', 'BCH', 'ETH', 'LTC'].forEach(key => {
-    tokens[key] = {
+    markets[key] = {
       USDT: {
         price: 0,
         change: 0,
       },
       ETH: {
         price: 0,
-        change: 0,
+        change: 1,
       },
       BTC: {
         price: 0,
-        change: 0,
+        change: -0.2,
       },
     };
   });
 
-  const sortedTokens = [];
   return {
-    tokens,
-    sortedTokens,
+    markets,
     configs: {
       itemCoin: 'USDT',
       isShowTradingChart: false,
-      sortKey: '',
-      sortType: {},
       isLoading: false,
       searchWord: '',
     },
@@ -37,17 +33,22 @@ const initState = (function() {
 const exchange = (state = initState, action) => {
   const newState = { ...state };
   switch (action.type) {
-    case 'MARKET.CHANGE_SEARCH_WORD': {
+    case 'EXCHANGE.CHANGE_SEARCH_WORD': {
       const searchWord = action.payload;
       const configs = newState.configs;
       configs.searchWord = searchWord;
       return { ...newState, configs: { ...configs }, sortedTokens: [] };
     }
-    case 'MARKET.CHANGE_COIN': {
+    case 'EXCHANGE.CHANGE_COIN': {
       const value = action.payload;
       const configs = newState.configs;
       configs.itemCoin = value;
       return { ...newState, configs: { ...configs } };
+    }
+    case 'EXCHANGE.GET_MARKET_DATA_COMPLETE': {
+      const value = action.payload;
+      const configs = state.configs;
+      return { ...state, markets: value, configs: { ...configs } };
     }
 
     case 'MARKET.CHANGE_CURRENCY': {
