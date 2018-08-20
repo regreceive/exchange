@@ -15,7 +15,11 @@ class Chart extends React.Component {
       for (var i = 0; i < rawData.length; i++) {
         categoryData.push(rawData[i].splice(0, 1)[0]);
         values.push(rawData[i]);
-        volumes.push([i, rawData[i][4], rawData[i][0] > rawData[i][1] ? 1 : -1]);
+        volumes.push([
+          i,
+          rawData[i][4],
+          rawData[i][0] > rawData[i][1] ? 1 : -1,
+        ]);
       }
 
       return {
@@ -295,7 +299,12 @@ class Chart extends React.Component {
           </dl>
         </div>
         <div style={{ height: 500 }}>
-          <ReactEcharts notMerge={true} lazyUpdate={true} theme={'theme_name'} option={this.getOption()} />
+          <ReactEcharts
+            notMerge={true}
+            lazyUpdate={true}
+            theme={'theme_name'}
+            option={this.getOption()}
+          />
         </div>
       </div>
     );

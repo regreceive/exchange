@@ -12,12 +12,14 @@ class Depth extends React.Component {
         axisPointer: { type: 'line', lineStyle: { color: 'rgba(0, 0, 0, 0)' } },
         backgroundColor: '#355475',
         textStyle: { color: '#fff', fontSize: '14px' },
-        extraCssText: 'box-shadow: 0 0 16px 0 rgba(0, 0, 0, .2);border-radius: 4px;',
+        extraCssText:
+          'box-shadow: 0 0 16px 0 rgba(0, 0, 0, .2);border-radius: 4px;',
         formatter: function(params) {
           var res = '<div><p>委托价：' + params[0].name + '</p></div>';
           for (var i = 0; i < params.length; i++) {
             if (params[i].data) {
-              res += '<p>' + params[i].seriesName + ':' + params[i].data + '</p>';
+              res +=
+                '<p>' + params[i].seriesName + ':' + params[i].data + '</p>';
             }
           }
           return res;
@@ -65,7 +67,19 @@ class Depth extends React.Component {
           itemStyle: { normal: { color: '#e94c4c' } },
           lineStyle: { normal: { color: '#392332' } },
           areaStyle: { color: '#392332' },
-          data: [undefined, undefined, undefined, undefined, undefined, 0, 2, 3, 6, 8, 10],
+          data: [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            0,
+            2,
+            3,
+            6,
+            8,
+            10,
+          ],
         },
       ],
     };
