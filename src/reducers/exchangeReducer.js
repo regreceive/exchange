@@ -1,19 +1,15 @@
 import * as converters from '../utils/converter';
 
 const initState = (function() {
-  const coin = {};
-  ['BTC', 'BCH', 'ETH', 'LTC'].forEach(key => {
-    coin[key] = {
-      price: 0,
-      change: 0,
-    };
-  });
-  const markets = { trans: 'USDT', coin };
+  const markets = {
+    trans: 'USDT',
+    coins: [['ENB', 0, 0], ['ECHO', 0, 0]],
+  };
 
   return {
     markets,
     configs: {
-      itemCoin: 'USDT',
+      trans: 'USDT',
       isShowTradingChart: false,
       isLoading: false,
       searchWord: '',
@@ -30,13 +26,13 @@ const exchange = (state = initState, action) => {
       configs.searchWord = searchWord;
       return { ...newState, configs: { ...configs }, sortedTokens: [] };
     }
-    case 'EXCHANGE.CHANGE_COIN': {
+    case 'EXCHANGE.SWITCH_MARKET_DATA': {
       const value = action.payload;
       const configs = newState.configs;
-      configs.itemCoin = value;
+      configs.trans = value;
       return { ...newState, configs: { ...configs } };
     }
-    case 'EXCHANGE.GET_MARKET_DATA_COMPLETE': {
+    case 'EXCHANGE.MARKET_DATA_COMPLETE': {
       const value = action.payload;
       const configs = state.configs;
       return { ...state, markets: value, configs: { ...configs } };

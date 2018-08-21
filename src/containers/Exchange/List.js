@@ -2,25 +2,26 @@ import React from 'react';
 import { Table } from 'antd';
 import { connect } from 'react-redux';
 import { getTranslate } from 'react-localize-redux/lib/index';
+import uuid from 'uuid/v1';
 
 import constants from '../../services/constants';
-import { getMarketData } from '../../actions/marketActions';
 
 @connect(store => {
   let { markets } = store.exchange;
-  const itemCoin = store.exchange.configs.itemCoin;
-  markets = Object.keys(markets.coin).map(key => {
-    if (itemCoin === markets.trans) {
+  const { coins } = markets;
+  const { trans } = store.exchange.configs;
+  if (trans !== markets.trans) {
+    markets = [];
+  } else {
+    markets = coins.map(coin => {
       return {
-        coin: key,
-        price: markets.coin[key].price,
-        change: markets.coin[key].change,
-        key,
+        coin: coin[0],
+        price: coin[1],
+        change: coin[2],
+        key: uuid(),
       };
-    } else {
-      return {};
-    }
-  });
+    });
+  }
 
   return {
     translate: getTranslate(store.locale),
@@ -28,10 +29,6 @@ import { getMarketData } from '../../actions/marketActions';
   };
 })
 export default class Layout extends React.Component {
-  componentDidMount() {
-    getMarketData();
-  }
-
   render() {
     const { translate } = this.props;
     const columns = [

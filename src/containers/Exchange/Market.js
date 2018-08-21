@@ -4,20 +4,20 @@ import { getTranslate } from 'react-localize-redux/lib/index';
 
 import {
   changeSearchWord,
-  changeCoin,
-  getMarketData,
-} from '../../actions/marketActions';
+  subscribeMarketData,
+  switchMarketData,
+} from '../../actions/exchangeActions';
 import MarketView from '../../components/Exchange/Market/MarketView';
 
 @connect(store => {
   return {
     translate: getTranslate(store.locale),
-    tokens: store.tokens,
+    trans: store.exchange.configs.trans,
   };
 })
 export default class Layout extends React.Component {
   componentDidMount() {
-    this.props.dispatch(getMarketData('USDT'));
+    this.props.dispatch(subscribeMarketData('USDT'));
   }
 
   searchHandle = evt => {
@@ -25,8 +25,10 @@ export default class Layout extends React.Component {
   };
 
   // 切换交易对
-  changeCoin = value => () => {
-    this.props.dispatch(changeCoin(value));
+  changeTrans = value => () => {
+    if (value !== this.props.trans) {
+      this.props.dispatch(switchMarketData(value));
+    }
   };
 
   render() {
@@ -34,8 +36,7 @@ export default class Layout extends React.Component {
       <MarketView
         translate={this.props.translate}
         searchHandle={this.searchHandle}
-        changeCoin={this.changeCoin}
-        tokens={this.props.tokens}
+        changeTrans={this.changeTrans}
       />
     );
   }

@@ -156,7 +156,6 @@ function acceptableTyping(number) {
   //   return true
   // }
 
-  // TODO refactor format
   // zero suffixed with real number
   // if (number.length > 0 && number[number.length - 1] == "0") {
   //   for (var i = 0; i < number.length; i++) {

@@ -13,10 +13,17 @@ server.listen(8000);
 
 io.on('connect', socket => {
   console.log(socket.id);
-  socket.on('GET_MARKET_DATA', data => {
-    socket.emit('MARKET_DATA', {
-      trans: 'USDT',
-      coin: { ENB: { price: 0, change: 0 } },
+  socket
+    .on('SUBSCRIBE_MARKET_DATA', data => {
+      socket.emit('MARKET_DATA', {
+        trans: data,
+        coins: [['ENB', 0, 0], ['ECHO', 0, 0]],
+      });
+    })
+    .on('SWITCH_MARKET_DATA', data => {
+      socket.emit('MARKET_DATA', {
+        trans: data,
+        coins: [['ENB', 0, 0], ['ECHO', 0, 0]],
+      });
     });
-  });
 });
