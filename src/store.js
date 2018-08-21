@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import { initLanguage } from './services/language';
 import rootReducer from './reducers';
+import rootSaga from './sagas';
 import history from './history';
 
 const initialState = {};
@@ -30,6 +31,7 @@ const store = createStore(
   initialState,
   composedEnhancers,
 );
+sagaMiddleware.run(rootSaga);
 
 initLanguage(store);
 

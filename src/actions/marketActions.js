@@ -1,14 +1,28 @@
 export function changeSearchWord(value) {
   return {
-    type: 'MARKET.CHANGE_SEARCH_WORD',
+    type: 'EXCHANGE.CHANGE_SEARCH_WORD',
     payload: value,
   };
 }
 
 export function changeCoin(value) {
   return {
-    type: 'MARKET.CHANGE_COIN',
+    type: 'EXCHANGE.CHANGE_COIN',
     payload: value,
+  };
+}
+
+export function getMarketData(coin) {
+  return {
+    type: 'EXCHANGE.GET_MARKET_DATA',
+    payload: coin,
+  };
+}
+
+export function getMarketDataComplete(data) {
+  return {
+    type: 'EXCHANGE.GET_MARKET_DATA_COMPLETE',
+    payload: data,
   };
 }
 
@@ -44,19 +58,6 @@ export function changeShowColumn(column, show) {
   return {
     type: 'MARKET.CHANGE_SHOW_COLUMN',
     payload: { column, show },
-  };
-}
-
-export function getMarketData() {
-  return {
-    type: 'MARKET.GET_MARKET_DATA',
-  };
-}
-
-export function getMarketDataComplete(data) {
-  return {
-    type: 'MARKET.GET_MARKET_DATA_COMPLETE',
-    payload: data,
   };
 }
 

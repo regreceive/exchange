@@ -81,7 +81,7 @@ choosePort(HOST, DEFAULT_PORT)
     );
     const devServer = new WebpackDevServer(compiler, serverConfig);
     // 加载 socket.io
-    require('../server').listen(devServer.listeningApp);
+    // require('../server').listen(devServer.listeningApp);
     devServer.listen(port, HOST, err => {
       if (err) {
         return console.log(err);

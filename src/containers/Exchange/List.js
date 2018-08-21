@@ -3,52 +3,74 @@ import { Table } from 'antd';
 import { connect } from 'react-redux';
 import { getTranslate } from 'react-localize-redux/lib/index';
 
+import constants from '../../services/constants';
+import { getMarketData } from '../../actions/marketActions';
+
 @connect(store => {
-  let tokens = store.exchange.tokens;
+  let { markets } = store.exchange;
   const itemCoin = store.exchange.configs.itemCoin;
-  tokens = Object.keys(tokens).map(key => {
-    return {
-      coin: key,
-      price: tokens[key][itemCoin].price,
-      change: tokens[key][itemCoin].change,
-      key,
-    };
+  markets = Object.keys(markets.coin).map(key => {
+    if (itemCoin === markets.trans) {
+      return {
+        coin: key,
+        price: markets.coin[key].price,
+        change: markets.coin[key].change,
+        key,
+      };
+    } else {
+      return {};
+    }
   });
 
   return {
     translate: getTranslate(store.locale),
-    tokens,
+    markets,
   };
 })
 export default class Layout extends React.Component {
+  componentDidMount() {
+    getMarketData();
+  }
+
   render() {
-    console.log(this.props.tokens);
     const { translate } = this.props;
     const columns = [
       {
         title: translate('exchange.coin'),
         dataIndex: 'coin',
         width: '33%',
-        sorter: (a, b) => a.name.length - b.name.length,
+        sorter: (a, b) => a.coin - b.coin,
       },
       {
         title: translate('exchange.last_price'),
         dataIndex: 'price',
         width: '33%',
-        sorter: (a, b) => a.age - b.age,
+        sorter: (a, b) => a.price - b.price,
       },
       {
         title: translate('exchange.change'),
         dataIndex: 'change',
         width: '33%',
-        sorter: (a, b) => a.address.length - b.address.length,
+        sorter: (a, b) => a.change - b.change,
+        render: value => {
+          let color = '#fff';
+          let plus = '+';
+          if (value > 0) {
+            color = constants.COLOR_RAISE;
+          } else if (value < 0) {
+            color = constants.COLOR_FALL;
+            plus = '';
+          }
+
+          return <span style={{ color }}>{plus + value}%</span>;
+        },
       },
     ];
 
     return (
       <Table
         columns={columns}
-        dataSource={this.props.tokens}
+        dataSource={this.props.markets}
         pagination={false}
       />
     );
