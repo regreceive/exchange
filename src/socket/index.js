@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 import { store } from '../store';
+import { initDepthChart } from '../actions/chartData';
 
 let socket = io();
 
@@ -12,7 +13,7 @@ socket.on('disconnect', () => {
 });
 
 socket.on('chart:depth', ({ action, msg, data }) => {
-  console.log(action, msg, data);
+  store.dispatch(initDepthChart(data));
 });
 
 export default socket;

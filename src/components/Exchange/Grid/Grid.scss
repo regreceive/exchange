@@ -15,7 +15,7 @@
 
 .container {
   display: grid;
-  grid-template-rows: 60px 530px 490px 530px 480px;
+  grid-template-rows: 60px 660px 490px 530px 480px;
   grid-template-columns: minmax(280px, 360px) minmax(600px, 3fr) minmax(60px, .5fr) minmax(280px, 2fr);
   grid-template-areas:
     'h  h  h  h'
