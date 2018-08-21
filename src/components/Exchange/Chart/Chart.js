@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import './Chart.css';
-import { rawData } from '../../../mockData';
 import getChartOption from './chartOption';
 import { connect } from 'react-redux';
 
@@ -67,14 +66,13 @@ class Chart extends React.Component {
             </dd>
           </dl>
         </div>
-        <div style={{ height: 500 }}>
-          <ReactEcharts
-            notMerge={true}
-            lazyUpdate={true}
-            theme={'theme_name'}
-            option={this.getOption()}
-          />
-        </div>
+        <ReactEcharts
+          style={{ height: '600px', width: '100%' }}
+          notMerge={true}
+          lazyUpdate={true}
+          theme={'theme_name'}
+          option={this.getOption()}
+        />
       </div>
     );
   }

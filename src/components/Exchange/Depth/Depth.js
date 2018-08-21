@@ -92,7 +92,11 @@ class Depth extends React.Component {
           <Icon type="down" />
           <span styleName="depth-info">深度图</span>
         </div>
-        <ReactEcharts option={this.getOption()} styleName="depth-echart" />
+        <ReactEcharts
+          style={{ height: 500 }}
+          option={this.getOption()}
+          styleName="depth-echart"
+        />
       </div>
     );
   }

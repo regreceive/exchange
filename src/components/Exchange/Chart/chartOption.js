@@ -79,13 +79,13 @@ export default data => ({
     {
       left: '10%',
       right: '8%',
-      height: '70%',
+      height: '50%',
     },
     {
       left: '10%',
       right: '8%',
       top: '63%',
-      height: '20%',
+      height: '16%',
     },
   ],
   xAxis: [
