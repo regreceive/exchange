@@ -1,6 +1,7 @@
-var upColor = '#00da3c';
-var downColor = '#ec0000';
-
+var upColor1 = '#00da3c';
+var downColor1 = '#ec0000';
+var upColor = '#589065';
+var downColor = '#ae4e54';
 function calculateMA(dayCount, data) {
   var result = [];
   for (var i = 0, len = data.values.length; i < len; i++) {
@@ -18,40 +19,25 @@ function calculateMA(dayCount, data) {
 }
 
 export default data => ({
-  legend: {
-    bottom: 10,
-    left: 'center',
-    data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30'],
-  },
   tooltip: {
     trigger: 'axis',
+    transitionDuration: 0,
     axisPointer: {
       type: 'cross',
     },
-    backgroundColor: 'rgba(245, 245, 245, 0.8)',
-    borderWidth: 1,
-    padding: 10,
-    textStyle: {},
-    position: function(pos, params, el, elRect, size) {
-      var obj = { top: 10 };
-      obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
-      return obj;
+    backgroundColor: 'transparent',
+    position: [50, 0],
+    formatter(parmas) {
+      // let [baseData, MA5, MA10, MA20, MA30] = parmas;
+      let [, open, close, lowest, highest] = parmas.find(
+        item => item.seriesName === 'main',
+      ).data;
+      return `开= ${open} 高= ${highest} 低=${lowest} 收=${close}`;
     },
-    // extraCssText: 'width: 170px'
   },
   axisPointer: {
     link: { xAxisIndex: 'all' },
     label: {},
-  },
-  toolbox: {
-    feature: {
-      dataZoom: {
-        yAxisIndex: false,
-      },
-      brush: {
-        type: ['lineX', 'clear'],
-      },
-    },
   },
   brush: {
     xAxisIndex: 'all',
@@ -67,11 +53,11 @@ export default data => ({
     pieces: [
       {
         value: 1,
-        color: downColor,
+        color: downColor1,
       },
       {
         value: -1,
-        color: upColor,
+        color: upColor1,
       },
     ],
   },
@@ -152,19 +138,12 @@ export default data => ({
       xAxisIndex: [0, 1],
       start: 98,
       end: 100,
-    },
-    {
-      show: false,
-      xAxisIndex: [0, 1],
-      type: 'slider',
-      top: '85%',
-      start: 98,
-      end: 100,
+      minValueSpan: 14,
     },
   ],
   series: [
     {
-      name: 'Dow-Jones index',
+      name: 'main',
       type: 'candlestick',
       data: data.values,
       itemStyle: {
@@ -175,18 +154,6 @@ export default data => ({
           borderColor0: null,
         },
       },
-      tooltip: {
-        formatter: function(param) {
-          param = param[0];
-          return [
-            'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
-            'Open: ' + param.data[0] + '<br/>',
-            'Close: ' + param.data[1] + '<br/>',
-            'Lowest: ' + param.data[2] + '<br/>',
-            'Highest: ' + param.data[3] + '<br/>',
-          ].join('');
-        },
-      },
     },
     {
       name: 'MA5',
@@ -194,6 +161,7 @@ export default data => ({
       data: calculateMA(5, data),
       smooth: true,
       showSymbol: false,
+      symbol: 'none',
       lineStyle: {
         normal: { opacity: 0.5 },
       },
@@ -204,6 +172,7 @@ export default data => ({
       data: calculateMA(10, data),
       smooth: true,
       showSymbol: false,
+      symbol: 'none',
       lineStyle: {
         normal: { opacity: 0.5 },
       },
@@ -214,6 +183,7 @@ export default data => ({
       data: calculateMA(20, data),
       smooth: true,
       showSymbol: false,
+      symbol: 'none',
       lineStyle: {
         normal: { opacity: 0.5 },
       },
@@ -224,6 +194,7 @@ export default data => ({
       data: calculateMA(30, data),
       smooth: true,
       showSymbol: false,
+      symbol: 'none',
       lineStyle: {
         normal: { opacity: 0.5 },
       },
