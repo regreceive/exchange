@@ -4,11 +4,14 @@ import { ConnectedRouter } from 'connected-react-router';
 
 import constants from '../../services/constants';
 
+import './LayoutView.css';
+
 const LayoutView = props => {
-  let defaultPathExchange = constants.BASE_HOST + '/exchange';
+  let defaultPathExchange = constants.BASE_HOST + '/exchange/ETH';
   if (props.currentLanguage !== 'en') {
     defaultPathExchange += '?lang=' + props.currentLanguage;
   }
+
   return (
     <ConnectedRouter history={props.history}>
       <div>
@@ -16,7 +19,7 @@ const LayoutView = props => {
           <Switch>
             <Route
               exact
-              path={constants.BASE_HOST + '/exchange'}
+              path={constants.BASE_HOST + '/exchange/:coin'}
               component={props.exchange}
             />
             <Redirect to={defaultPathExchange} />

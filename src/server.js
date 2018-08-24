@@ -25,5 +25,20 @@ io.on('connect', socket => {
         trans: data,
         coins: [['ENB', 0, 0], ['ECHO', 0, 0]],
       });
+    })
+    .on('SUBSCRIBE_LATEST', data => {
+      socket.emit('LATEST', [281.51, -1.67, 292.08, 269.48, 98794]);
+    })
+    .on('SUBSCRIBE_ORDERS', data => {
+      socket.emit('ORDERS', {
+        sell: [[281.96, 0.5, 5.5038], [282.37, 3.0309, 7.8876]],
+        buy: [[181.96, 1.5, 5.5038], [182.37, 3.0309, 17.8876]],
+      });
+    })
+    .on('SUBSCRIBE_TRADES', data => {
+      socket.emit('TRADES', [
+        [Date.now(), 0, 100, 200],
+        [Date.now(), 1, 50, 220],
+      ]);
     });
 });

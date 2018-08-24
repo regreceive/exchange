@@ -1,0 +1,85 @@
+.container {
+  position: relative;
+  border-radius: 5px;
+  background-color: #1b1e2e;
+
+  .header {
+    padding-top: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .1);
+    background-color: #14182a;
+  }
+
+  .row {
+    padding: 0 10px;
+    font-size: 14px;
+
+    .label {
+      font-size: 16px;
+    }
+
+    .cny {
+      color: #4e5b85;
+      text-align: center;
+
+      .icon {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .trans-wrap {
+    padding: 0 10px;
+    margin-top: 20px;
+    color: #61688a;
+
+    .text-right {
+      text-align: right;
+    }
+
+    .star {
+      margin-right: 5px;
+      color: #61688a;
+    }
+
+    .mark {
+      color: #c7cce6;
+    }
+
+    .trans {
+      display: inline-block;
+      padding-bottom: 5px;
+      color: #61688a;
+      cursor: pointer;
+
+      &.selected {
+        border-bottom: 1px solid #7a98f7;
+        color: #7a98f7;
+        cursor: default;
+
+        .star {
+          color: #7a98f7;
+        }
+
+        .mark {
+          color: #7a98f7;
+        }
+      }
+    }
+  }
+
+  .table-wrap {
+    padding-bottom: 10px;
+    margin: 10px 10px;
+  }
+
+  :global {
+    .ant-table-thead tr th {
+      border-bottom: 1px solid #1f2943;
+    }
+
+    .ant-table-tbody tr td {
+      border-bottom: 1px solid #1f2943;
+    }
+
+  }
+}

@@ -1,0 +1,112 @@
+.coin_detail {
+  .mod {
+    border-radius: 3px;
+    margin-bottom: 10px;
+    transition: height .15s ease-in-out;
+
+    .mod_hd {
+      height: 48px;
+      padding:0 40px 0 15px;
+      box-shadow: 0 3px 6px rgba(0,0,0,.1);
+      font-size: 16px;
+      line-height: 48px;
+
+      .mod_detail {
+        padding-left: 6px;
+      }
+
+      > a {
+        float:right;
+        color:#7a98f7;
+        font-size: 14px;
+      }
+
+      .mod_show_btn {
+        float: left;
+        display: -ms-flexbox;
+        display: flex;
+        align-items: center;
+        height: inherit;
+        cursor: pointer;
+        -ms-flex-align: center;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+            
+      }
+        
+    }
+
+    .mod_bg {
+      padding: 10px 30px 30px;
+
+      .left {
+        float: left;
+        width: 35%;
+        padding-bottom: 14px;
+
+        > h3 {
+          height: 88px;
+          padding-top: 10px;
+          border-bottom: 1px solid #1f2943;
+          font-weight: 400;
+
+          > span {
+            display: block;
+            height: 44px;
+            color:#61688a;
+            font-style: normal;
+            font-size: 24px;
+            text-transform: uppercase;
+          }
+                
+        }
+
+        .in {
+          > span {
+            display: block;
+            padding: 22px 0 10px;
+            color:#61688a;
+          }
+
+          > p {
+            font-size: 13px;
+            line-height: 24px;
+          }
+        }
+      }
+
+      .right {
+        float: right;
+        width: 53%;
+        font-size: 13px;
+
+        li {
+          height: 48px;
+          border-bottom: 1px solid #1f2943;
+          line-height: 48px;
+
+          > span {
+            float: left;
+            width: 30%;
+            color:#61688a;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          > p {
+            width: 70%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+                
+        }
+            
+      }    
+    }
+        
+  }    
+}

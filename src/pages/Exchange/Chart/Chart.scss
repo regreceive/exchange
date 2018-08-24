@@ -1,0 +1,42 @@
+.chart {
+  .hd {
+    padding-left:10px;
+    background:#1b1e2e;
+    box-shadow:0 3px 6px rgba(0,0,0,.1);
+
+    .ticker_wrap {
+      height: 48px;
+      padding-left: 20px;
+      line-height: 48px;
+      white-space: nowrap;
+
+      > dt {
+        display: inline-block;
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      > dd {
+        display: inline-block;
+        margin-left:10px;
+        font-size: 14px;
+      }
+
+      .ticker_close {
+        margin-left: 10px;
+      }
+
+      .color_up {
+        color:green;
+      }
+            
+    }
+
+    .upper {
+      font-style: normal;
+      text-transform: uppercase;
+    }
+        
+                
+  }
+}

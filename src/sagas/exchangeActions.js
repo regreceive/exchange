@@ -1,6 +1,8 @@
 import { eventChannel } from 'redux-saga';
 import { put, call, takeEvery } from 'redux-saga/effects';
+
 import { createWebSocketConnection } from '../services/connection';
+import * as actions from '../actions/exchangeActions';
 
 function createSocketChannel(socket) {
   return eventChannel(emit => {
@@ -10,12 +12,19 @@ function createSocketChannel(socket) {
     socket.on('disconnect', () => {
       console.log('disconnect');
     });
-    socket.on('MARKET_DATA', data => {
-      return emit({
-        type: 'EXCHANGE.MARKET_DATA_COMPLETE',
-        payload: data,
+    socket
+      .on('MARKET_DATA', data => {
+        return emit(actions.marketDataComplete(data));
+      })
+      .on('LATEST', data => {
+        return emit(actions.latestComplete(data));
+      })
+      .on('ORDERS', data => {
+        return emit(actions.ordersComplete(data));
+      })
+      .on('TRADES', data => {
+        return emit(actions.tradesComplete(data));
       });
-    });
 
     return () => {
       socket.off('abc');
@@ -42,6 +51,33 @@ function* switchMarketData(socket, action) {
   }
 }
 
+function* subscribeLatest(socket, action) {
+  const coin = action.payload || 'BTC';
+  try {
+    yield call([socket, 'emit'], 'SUBSCRIBE_LATEST', coin);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* subscribeOrders(socket, action) {
+  const coin = action.payload || 'BTC';
+  try {
+    yield call([socket, 'emit'], 'SUBSCRIBE_ORDERS', coin);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* subscribeTrades(socket, action) {
+  const coin = action.payload || 'BTC';
+  try {
+    yield call([socket, 'emit'], 'SUBSCRIBE_TRADES', coin);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* socketResponseHandle(action) {
   yield put(action);
 }
@@ -57,4 +93,7 @@ export function* watchMarket() {
     socket,
   );
   yield takeEvery('EXCHANGE.SWITCH_MARKET_DATA', switchMarketData, socket);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_LATEST', subscribeLatest, socket);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_ORDERS', subscribeOrders, socket);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_TRADES', subscribeTrades, socket);
 }

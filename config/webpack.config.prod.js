@@ -8,7 +8,8 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
@@ -36,8 +37,12 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 const isDebug = !process.argv.includes('--release');
 
 // Note: defined here because it will be used more than once.
-const extractOwnCSS = new ExtractTextPlugin('static/css/[name].[contenthash:8].css');
-const extractVendorCSS = new ExtractTextPlugin('static/css/vendor.[contenthash:8].css');
+const extractOwnCSS = new ExtractTextPlugin(
+  'static/css/[name].[contenthash:8].css',
+);
+const extractVendorCSS = new ExtractTextPlugin(
+  'static/css/vendor.[contenthash:8].css',
+);
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -47,6 +52,13 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
     { publicPath: Array('//'.split('/').length).join('../') }
   : {};
+
+// 修改antd的主题，转换项目根目录/antd-theme内的主题文件为js格式，修改到webpack.config中，达到定制主题的目的
+const fs = require('fs-extra');
+const lessToJs = require('less-vars-to-js');
+const customTheme = lessToJs(
+  fs.readFileSync(path.join(__dirname, '../antd-theme/theme.less'), 'utf8'),
+);
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
@@ -70,7 +82,10 @@ module.exports = {
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
-    devtoolModuleFilenameTemplate: info => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'),
+    devtoolModuleFilenameTemplate: info =>
+      path
+        .relative(paths.appSrc, info.absoluteResourcePath)
+        .replace(/\\/g, '/'),
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -152,7 +167,9 @@ module.exports = {
                 [
                   'react-css-modules',
                   {
-                    generateScopedName: isDebug ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
+                    generateScopedName: isDebug
+                      ? '[name]-[local]-[hash:base64:5]'
+                      : '[hash:base64:5]',
                   },
                 ],
               ],
@@ -190,7 +207,9 @@ module.exports = {
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
                         modules: true,
-                        localIdentName: isDebug ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
+                        localIdentName: isDebug
+                          ? '[name]-[local]-[hash:base64:5]'
+                          : '[hash:base64:5]',
                         camelCase: true,
                       },
                     },
@@ -259,7 +278,10 @@ module.exports = {
                     },
                     {
                       loader: 'less-loader',
-                      options: { javascriptEnabled: true },
+                      options: {
+                        javascriptEnabled: true,
+                        modifyVars: customTheme,
+                      },
                     },
                   ],
                 },
