@@ -1,0 +1,72 @@
+
+.limit {
+  padding:0 30px;
+
+  div {
+    margin-bottom: 5px;
+    color:#61688a;
+  }
+
+  .unit {
+    position: absolute;
+    top: 26px;
+    right: 20px;
+    height: 40px; 
+    color:#61688a;
+    line-height: 40px;
+    text-transform: uppercase;  
+  }
+
+  .unit-u {
+    position: absolute;
+    right: 20px;
+    height: 40px; 
+    color:#61688a;
+    line-height: 40px;
+    text-transform: uppercase; 
+  }
+
+  .bg {
+    height: 24px;
+    margin-bottom: 30px;
+    background-color: rgba(78,91,133,.4);
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 24px;
+        
+  }
+
+  .info {
+    height: 46px;
+    font-size: 16px;
+    line-height: 36px;       
+  }
+
+  :global {
+    .ant-input {
+      border-color:#4e5b85;
+      color: #c7cce6;
+      background-color: #1e2235;
+    }
+
+    .ant-btn {
+      height:40px;
+      border-color:transparent;
+      background-color: #4e5b85;
+      font-size:16px;
+
+      span {
+        color:#fff;
+      }
+            
+    }
+  }
+}
+
+.market {
+  :global {
+    .ant-input {
+      margin-bottom: 40px;
+    } 
+  }
+}

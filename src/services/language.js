@@ -18,16 +18,14 @@ export function initLanguage(store) {
   let languagePack, packName;
   try {
     packName = getParameterByName('lang');
-    if (packName) {
-      languagePack = import('lang/' + packName + '.json');
-    } else {
+    if (!packName) {
       packName = Language.defaultLanguage;
-      languagePack = import('lang/' + packName + '.json');
     }
+    languagePack = getLanguage(packName);
   } catch (e) {
     console.log(e);
     packName = Language.defaultLanguage;
-    languagePack = import('lang/' + packName + '.json');
+    languagePack = getLanguage(packName);
   }
 
   store.dispatch(

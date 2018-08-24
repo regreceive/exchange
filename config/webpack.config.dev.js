@@ -21,6 +21,13 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
+// 修改antd的主题，转换项目根目录/antd-theme内的主题文件为js格式，修改到webpack.config中，达到定制主题的目的
+const fs = require('fs-extra');
+const lessToJs = require('less-vars-to-js');
+const customTheme = lessToJs(
+  fs.readFileSync(path.join(__dirname, '../antd-theme/theme.less'), 'utf8'),
+);
+
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -234,7 +241,10 @@ module.exports = {
                 test: /\.less$/,
                 include: paths.appNodeModules,
                 loader: 'less-loader',
-                options: { javascriptEnabled: true },
+                options: {
+                  modifyVars: customTheme,
+                  javascriptEnabled: true,
+                },
               },
             ],
           },
