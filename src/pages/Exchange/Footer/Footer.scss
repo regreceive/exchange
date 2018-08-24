@@ -1,0 +1,27 @@
+.footer {
+  position: relative;
+  height: 330px;
+  margin-top: -330px;
+  z-index: 2;
+
+  .foot-wrap {
+    display: flex;
+    width:90%;
+    width: 1200px;
+    padding: 60px 20px 0;
+    margin: auto;
+
+    .copyright {
+      padding-top: 60px;
+      color: #61688a;
+    }
+
+    dl h2 {
+      height: 42px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 12px;
+    }
+
+  }
+}
