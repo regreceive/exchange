@@ -11,6 +11,7 @@ const LayoutView = props => {
   if (props.currentLanguage !== 'en') {
     defaultPathExchange += '?lang=' + props.currentLanguage;
   }
+
   return (
     <ConnectedRouter history={props.history}>
       <div>

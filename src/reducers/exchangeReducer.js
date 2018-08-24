@@ -11,11 +11,14 @@ const initState = (function() {
 
   // price, change, high, low, vol
   const latest = [0, 0, 0, 0, 0];
+  // timestamp, type, price, amount
+  const trades = [0, 0, 0, 0];
 
   return {
     markets,
     orders,
     latest,
+    trades,
     configs: {
       coin: '',
       trans: 'USDT',
@@ -54,6 +57,10 @@ const exchange = (state = initState, action) => {
     case 'EXCHANGE.ORDERS_COMPLETE': {
       const orders = action.payload;
       return { ...state, orders };
+    }
+    case 'EXCHANGE.TRADES_COMPLETE': {
+      const trades = action.payload;
+      return { ...state, trades };
     }
     default:
       return state;

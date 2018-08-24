@@ -21,6 +21,9 @@ function createSocketChannel(socket) {
       })
       .on('ORDERS', data => {
         return emit(actions.ordersComplete(data));
+      })
+      .on('TRADES', data => {
+        return emit(actions.tradesComplete(data));
       });
 
     return () => {
@@ -66,6 +69,15 @@ function* subscribeOrders(socket, action) {
   }
 }
 
+function* subscribeTrades(socket, action) {
+  const coin = action.payload || 'BTC';
+  try {
+    yield call([socket, 'emit'], 'SUBSCRIBE_TRADES', coin);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* socketResponseHandle(action) {
   yield put(action);
 }
@@ -83,4 +95,5 @@ export function* watchMarket() {
   yield takeEvery('EXCHANGE.SWITCH_MARKET_DATA', switchMarketData, socket);
   yield takeEvery('EXCHANGE.SUBSCRIBE_LATEST', subscribeLatest, socket);
   yield takeEvery('EXCHANGE.SUBSCRIBE_ORDERS', subscribeOrders, socket);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_TRADES', subscribeTrades, socket);
 }

@@ -55,9 +55,23 @@ export function subscribeOrders(coin) {
   };
 }
 
+export function subscribeTrades(coin) {
+  return {
+    type: 'EXCHANGE.SUBSCRIBE_TRADES',
+    payload: coin,
+  };
+}
+
 export function ordersComplete(data) {
   return {
     type: 'EXCHANGE.ORDERS_COMPLETE',
+    payload: data,
+  };
+}
+
+export function tradesComplete(data) {
+  return {
+    type: 'EXCHANGE.TRADES_COMPLETE',
     payload: data,
   };
 }
