@@ -7,7 +7,7 @@ import {
   subscribeMarkets,
   switchMarkets,
 } from '../../../actions/exchangeActions';
-import MarketView from './MarketView';
+import MarketsView from './MarketsView';
 
 @connect(store => {
   return {
@@ -34,7 +34,7 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <MarketView
+      <MarketsView
         translate={this.props.translate}
         marketsSymbol={this.props.marketsSymbol}
         searchHandle={this.searchHandle}

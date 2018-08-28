@@ -4,9 +4,9 @@ import cs from 'classnames';
 
 import List from './List';
 
-import './MarketView.css';
+import './MarketsView.css';
 
-const MarketView = ({
+const MarketsView = ({
   translate,
   marketsSymbol,
   searchHandle,
@@ -62,4 +62,4 @@ const MarketView = ({
   );
 };
 
-export default MarketView;
+export default MarketsView;

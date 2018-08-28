@@ -8,8 +8,7 @@ function createSocketChannel() {
   return eventChannel(emit => {
     conn
       .on('markets', (symbol, extraArgs, data) => {
-        const { tick } = data;
-        return emit(actions.marketsComplete(tick));
+        return emit(actions.marketsComplete(data.tick.markets));
       })
       .on('latest', (symbol, extraArgs, data) => {
         return emit(actions.latestComplete(data.tick.latest));

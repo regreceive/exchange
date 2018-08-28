@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from '../Header';
-import Market from '../Market';
+import Markets from '../Markets';
 import Notice from '../Notice';
 import Mscy from '../Mscy';
 import TradePanel from '../TradePanel';
@@ -21,7 +21,7 @@ const GridView = () => {
       {/*边栏*/}
       <div styleName="aside">
         {/*行情*/}
-        <Market />
+        <Markets />
         {/*通知*/}
         <Notice />
       </div>

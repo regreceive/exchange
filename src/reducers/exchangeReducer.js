@@ -1,7 +1,5 @@
 const initState = (function() {
-  const markets = {
-    coins: [['ENB', 0, 0], ['ECHO', 0, 0]],
-  };
+  const markets = [['ENB', 0, 0], ['ECHO', 0, 0]];
 
   const orders = {
     sell: [],
@@ -19,7 +17,7 @@ const initState = (function() {
     latest,
     trades,
     configs: {
-      coin: '',
+      symbol: '',
       marketsSymbol: 'usdt',
       searchWord: '',
     },

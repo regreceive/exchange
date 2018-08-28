@@ -41,7 +41,7 @@ function marketsHandle(socket, symbol, extraArgs, data) {
     ch: `market.${symbol}.markets`,
     ts: Date.now(),
     tick: {
-      coins: [['ENB', 1, 1], ['ECHO', 0, 0]],
+      markets: [['ENB', 1, 1], ['ECHO', 0, 0]],
     },
   });
 }
