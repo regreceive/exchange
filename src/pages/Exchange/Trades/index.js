@@ -2,36 +2,36 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getTranslate } from 'react-localize-redux/lib/index';
 
-import MarketTradesView from './MarketTradesView';
+import TradesView from './TradesView';
 import { subscribeTrades } from '../../../actions/exchangeActions';
 
 @connect(store => {
   return {
     translate: getTranslate(store.locale),
     trades: store.exchange.trades,
-    coin: store.exchange.configs.coin,
+    symbol: store.exchange.configs.symbol,
   };
 })
 export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    this.coin = '';
+    this.symbol = '';
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.coin !== nextProps.coin) {
-      this.coin = nextProps.coin;
-      this.props.dispatch(subscribeTrades(this.props.coin));
+    if (this.symbol !== nextProps.symbol) {
+      this.symbol = nextProps.symbol;
+      this.props.dispatch(subscribeTrades(this.props.symbol));
     }
   }
 
   render() {
     return (
-      <MarketTradesView
+      <TradesView
         translate={this.props.translate}
         trades={this.props.trades}
-        coin={this.props.coin}
+        symbol={this.props.symbol}
       />
     );
   }

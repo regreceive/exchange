@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import uuid from 'uuid/v1';
 import cs from 'classnames';
 
-import './MarketTradesView.css';
+import './TradesView.css';
 
 function toTime(timestamp) {
   return dayjs(timestamp).format('HH:mm:ss');
@@ -38,7 +38,7 @@ const Trades = ({ lists }) => {
   });
 };
 
-const MarketTradesView = ({ translate, trades, coin }) => {
+const TradesView = ({ translate, trades, coin }) => {
   return (
     <div styleName="container">
       <div styleName="header">
@@ -62,4 +62,4 @@ const MarketTradesView = ({ translate, trades, coin }) => {
     </div>
   );
 };
-export default MarketTradesView;
+export default TradesView;

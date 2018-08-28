@@ -1,7 +1,7 @@
-export function setCoin(coin) {
+export function setSymbol(symbol) {
   return {
-    type: 'EXCHANGE.SET_COIN',
-    payload: coin,
+    type: 'EXCHANGE.SET_SYMBOL',
+    payload: symbol,
   };
 }
 
@@ -12,31 +12,31 @@ export function changeSearchWord(value) {
   };
 }
 
-export function subscribeMarketData(trans) {
+export function subscribeMarkets(symbol) {
   return {
-    type: 'EXCHANGE.SUBSCRIBE_MARKET_DATA',
-    payload: trans,
+    type: 'EXCHANGE.SUBSCRIBE_MARKETS',
+    payload: symbol,
   };
 }
 
-export function switchMarketData(trans) {
+export function switchMarkets(symbol) {
   return {
-    type: 'EXCHANGE.SWITCH_MARKET_DATA',
-    payload: trans,
+    type: 'EXCHANGE.SWITCH_MARKETS',
+    payload: symbol,
   };
 }
 
-export function marketDataComplete(data) {
+export function marketsComplete(data) {
   return {
-    type: 'EXCHANGE.MARKET_DATA_COMPLETE',
+    type: 'EXCHANGE.MARKETS_COMPLETE',
     payload: data,
   };
 }
 
-export function subscribeLatest(coin) {
+export function subscribeLatest(symbol) {
   return {
     type: 'EXCHANGE.SUBSCRIBE_LATEST',
-    payload: coin,
+    payload: symbol,
   };
 }
 
@@ -48,17 +48,10 @@ export function latestComplete(data) {
 }
 
 // 对手盘
-export function subscribeOrders(coin) {
+export function subscribeOrders(symbol) {
   return {
     type: 'EXCHANGE.SUBSCRIBE_ORDERS',
-    payload: coin,
-  };
-}
-
-export function subscribeTrades(coin) {
-  return {
-    type: 'EXCHANGE.SUBSCRIBE_TRADES',
-    payload: coin,
+    payload: symbol,
   };
 }
 
@@ -66,6 +59,13 @@ export function ordersComplete(data) {
   return {
     type: 'EXCHANGE.ORDERS_COMPLETE',
     payload: data,
+  };
+}
+
+export function subscribeTrades(symbol) {
+  return {
+    type: 'EXCHANGE.SUBSCRIBE_TRADES',
+    payload: symbol,
   };
 }
 

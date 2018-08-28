@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import uuid from 'uuid/v1';
 
-import './OrderView.css';
+import './OrdersView.css';
 
 const SellOrders = ({ lists }) => {
   const length = lists.length;
@@ -35,7 +35,7 @@ const BuyOrders = ({ lists }) => {
   });
 };
 
-const OrderView = ({ translate, orders, latest, coin }) => {
+const OrdersView = ({ translate, orders, latest, symbol }) => {
   return (
     <div styleName="container">
       <div styleName="header">
@@ -49,11 +49,11 @@ const OrderView = ({ translate, orders, latest, coin }) => {
             <Col span={7}>价格(USDT)</Col>
             <Col span={7}>
               数量(
-              {coin})
+              {symbol})
             </Col>
             <Col span={7}>
               累计(
-              {coin})
+              {symbol})
             </Col>
           </Row>
         </dt>
@@ -66,4 +66,4 @@ const OrderView = ({ translate, orders, latest, coin }) => {
     </div>
   );
 };
-export default OrderView;
+export default OrdersView;

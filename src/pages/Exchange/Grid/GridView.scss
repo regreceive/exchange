@@ -63,7 +63,7 @@
   }
 }
 
-.order {
+.orders {
   grid-area: o;
 }
 
@@ -71,7 +71,7 @@
   grid-area: d;
 }
 
-.market-trades {
+.trades {
   grid-area: mt;
 }
 
@@ -82,9 +82,9 @@
 .header,
 .chart,
 .trade-panel,
-.order,
+.orders,
 .depth,
-.market-trades,
+.trades,
 .token-details {
   border-radius: 5px;
   background-color: #181b2a;

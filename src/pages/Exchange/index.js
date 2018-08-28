@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setCoin, subscribeLatest } from '../../actions/exchangeActions';
+import { setSymbol, subscribeLatest } from '../../actions/exchangeActions';
 import GridView from './Grid/GridView';
 
 @connect()
@@ -9,16 +9,16 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    this.coin = '';
+    this.symbol = '';
   }
 
   componentWillReceiveProps(nextProps) {
-    const coin = nextProps.match.params.coin;
+    const symbol = nextProps.match.params.symbol;
 
-    if (this.coin !== coin) {
-      this.coin = coin;
-      this.props.dispatch(setCoin(coin));
-      this.props.dispatch(subscribeLatest(coin));
+    if (this.symbol !== symbol) {
+      this.symbol = symbol;
+      this.props.dispatch(setSymbol(symbol));
+      this.props.dispatch(subscribeLatest(symbol));
     }
   }
 
