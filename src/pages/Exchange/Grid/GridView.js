@@ -5,8 +5,8 @@ import Market from '../Market';
 import Notice from '../Notice';
 import Mscy from '../Mscy';
 import TradePanel from '../TradePanel';
-import Order from '../Order';
-import MarketTrades from '../MarketTrades';
+import Orders from '../Orders';
+import Trades from '../Trades';
 import Chart from '../Chart';
 import Depth from '../Depth';
 import './GridView.css';
@@ -34,16 +34,16 @@ const GridView = () => {
         <TradePanel />
       </div>
       {/*对手盘*/}
-      <div styleName="order">
-        <Order />
+      <div styleName="orders">
+        <Orders />
       </div>
       {/*深度图*/}
       <div styleName="depth">
         <Depth />
       </div>
       {/*实时成交*/}
-      <div styleName="market-trades">
-        <MarketTrades />
+      <div styleName="trades">
+        <Trades />
       </div>
       {/*币种信息*/}
       <div styleName="token-details">

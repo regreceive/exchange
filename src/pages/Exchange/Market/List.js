@@ -9,19 +9,15 @@ import constants from '../../../services/constants';
 @connect(store => {
   let { markets } = store.exchange;
   const { coins } = markets;
-  const { trans } = store.exchange.configs;
-  if (trans !== markets.trans) {
-    markets = [];
-  } else {
-    markets = coins.map(coin => {
-      return {
-        coin: coin[0],
-        price: coin[1],
-        change: coin[2],
-        key: uuid(),
-      };
-    });
-  }
+
+  markets = coins.map(coin => {
+    return {
+      coin: coin[0],
+      price: coin[1],
+      change: coin[2],
+      key: uuid(),
+    };
+  });
 
   return {
     translate: getTranslate(store.locale),

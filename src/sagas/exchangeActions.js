@@ -1,78 +1,72 @@
 import { eventChannel } from 'redux-saga';
 import { put, call, takeEvery } from 'redux-saga/effects';
 
-import { createWebSocketConnection } from '../services/connection';
+import * as conn from '../services/connection';
 import * as actions from '../actions/exchangeActions';
 
-function createSocketChannel(socket) {
+function createSocketChannel() {
   return eventChannel(emit => {
-    socket.on('connect', () => {
-      console.log(socket.id);
-    });
-    socket.on('disconnect', () => {
-      console.log('disconnect');
-    });
-    socket
-      .on('MARKET_DATA', data => {
-        return emit(actions.marketDataComplete(data));
+    conn
+      .on('markets', (symbol, extraArgs, data) => {
+        const { tick } = data;
+        return emit(actions.marketsComplete(tick));
       })
-      .on('LATEST', data => {
-        return emit(actions.latestComplete(data));
+      .on('latest', (symbol, extraArgs, data) => {
+        return emit(actions.latestComplete(data.tick.latest));
       })
-      .on('ORDERS', data => {
-        return emit(actions.ordersComplete(data));
+      .on('orders', (symbol, extraArgs, data) => {
+        return emit(actions.ordersComplete(data.tick));
       })
-      .on('TRADES', data => {
-        return emit(actions.tradesComplete(data));
+      .on('trades', (symbol, extraArgs, data) => {
+        return emit(actions.tradesComplete(data.tick.trades));
       });
 
     return () => {
-      socket.off('abc');
-      socket.close();
+      conn.close();
     };
   });
 }
 
-function* subscribeMarketData(socket, action) {
-  const coin = action.payload || 'USDT';
+function* subscribeMarkets(action) {
+  const symbol = action.payload;
   try {
-    yield call([socket, 'emit'], 'SUBSCRIBE_MARKET_DATA', coin);
+    yield call([conn, 'subscribe'], { sub: `market.${symbol}.markets` });
   } catch (e) {
     console.log(e);
   }
 }
 
-function* switchMarketData(socket, action) {
-  const coin = action.payload || 'USDT';
+function* switchMarkets(action) {
+  const symbol = action.payload;
   try {
-    yield call([socket, 'emit'], 'SWITCH_MARKET_DATA', coin);
+    yield call([conn, 'switches'], { sub: `market.${symbol}.markets` });
   } catch (e) {
     console.log(e);
   }
 }
 
-function* subscribeLatest(socket, action) {
-  const coin = action.payload || 'BTC';
+function* subscribeLatest(action) {
+  const [symbol] = action.payload.split('_');
   try {
-    yield call([socket, 'emit'], 'SUBSCRIBE_LATEST', coin);
+    yield call([conn, 'subscribe'], { sub: `market.${symbol}.latest` });
   } catch (e) {
     console.log(e);
   }
 }
 
-function* subscribeOrders(socket, action) {
-  const coin = action.payload || 'BTC';
+function* subscribeOrders(action) {
+  const [symbol] = action.payload.split('_');
   try {
-    yield call([socket, 'emit'], 'SUBSCRIBE_ORDERS', coin);
+    yield call([conn, 'subscribe'], { sub: `market.${symbol}.orders` });
   } catch (e) {
     console.log(e);
   }
 }
 
-function* subscribeTrades(socket, action) {
-  const coin = action.payload || 'BTC';
+function* subscribeTrades(action) {
+  const [symbol] = action.payload.split('_');
   try {
-    yield call([socket, 'emit'], 'SUBSCRIBE_TRADES', coin);
+    yield call([conn, 'subscribe'], { sub: `market.${symbol}.trades` });
   } catch (e) {
     console.log(e);
   }
@@ -83,17 +77,13 @@ function* socketResponseHandle(action) {
 }
 
 export function* watchMarket() {
-  const socket = yield call(createWebSocketConnection);
-  const socketChannel = yield call(createSocketChannel, socket);
+  yield call(conn.createWebSocketConnection);
+  const socketChannel = yield call(createSocketChannel);
 
   yield takeEvery(socketChannel, socketResponseHandle);
-  yield takeEvery(
-    'EXCHANGE.SUBSCRIBE_MARKET_DATA',
-    subscribeMarketData,
-    socket,
-  );
-  yield takeEvery('EXCHANGE.SWITCH_MARKET_DATA', switchMarketData, socket);
-  yield takeEvery('EXCHANGE.SUBSCRIBE_LATEST', subscribeLatest, socket);
-  yield takeEvery('EXCHANGE.SUBSCRIBE_ORDERS', subscribeOrders, socket);
-  yield takeEvery('EXCHANGE.SUBSCRIBE_TRADES', subscribeTrades, socket);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_MARKETS', subscribeMarkets);
+  yield takeEvery('EXCHANGE.SWITCH_MARKETS', switchMarkets);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_LATEST', subscribeLatest);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_ORDERS', subscribeOrders);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_TRADES', subscribeTrades);
 }

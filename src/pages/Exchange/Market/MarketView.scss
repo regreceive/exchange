@@ -27,7 +27,7 @@
     }
   }
 
-  .trans-wrap {
+  .symbol-wrap {
     padding: 0 10px;
     margin-top: 20px;
     color: #61688a;
@@ -45,7 +45,7 @@
       color: #c7cce6;
     }
 
-    .trans {
+    .symbol {
       display: inline-block;
       padding-bottom: 5px;
       color: #61688a;
@@ -80,6 +80,5 @@
     .ant-table-tbody tr td {
       border-bottom: 1px solid #1f2943;
     }
-
   }
 }

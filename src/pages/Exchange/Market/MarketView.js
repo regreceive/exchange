@@ -6,7 +6,12 @@ import List from './List';
 
 import './MarketView.css';
 
-const MarketView = ({ translate, trans, searchHandle, changeTrans }) => {
+const MarketView = ({
+  translate,
+  marketsSymbol,
+  searchHandle,
+  changeMarketsSymbol,
+}) => {
   return (
     <div styleName="container">
       <div styleName="header">
@@ -22,24 +27,30 @@ const MarketView = ({ translate, trans, searchHandle, changeTrans }) => {
             CNY
           </Col>
         </Row>
-        <Row type="flex" styleName="trans-wrap">
-          <Col span={5} onClick={changeTrans('USDT')}>
-            <span styleName={cs('trans', { selected: trans === 'USDT' })}>
+        <Row type="flex" styleName="symbol-wrap">
+          <Col span={5} onClick={changeMarketsSymbol('usdt')}>
+            <span
+              styleName={cs('symbol', { selected: marketsSymbol === 'usdt' })}
+            >
               USDT
             </span>
           </Col>
-          <Col span={5} onClick={changeTrans('BTC')}>
-            <span styleName={cs('trans', { selected: trans === 'BTC' })}>
+          <Col span={5} onClick={changeMarketsSymbol('btc')}>
+            <span
+              styleName={cs('symbol', { selected: marketsSymbol === 'btc' })}
+            >
               BTC
             </span>
           </Col>
-          <Col span={5} onClick={changeTrans('ETH')}>
-            <span styleName={cs('trans', { selected: trans === 'ETH' })}>
+          <Col span={5} onClick={changeMarketsSymbol('eth')}>
+            <span
+              styleName={cs('symbol', { selected: marketsSymbol === 'eth' })}
+            >
               ETH
             </span>
           </Col>
           <Col span={9} styleName="text-right">
-            <span styleName="trans">
+            <span styleName="symbol">
               <Icon type="star" styleName="star" />
               <span styleName="mark">{translate('exchange.marked')}</span>
             </span>
