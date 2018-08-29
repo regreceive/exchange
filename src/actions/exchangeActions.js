@@ -62,16 +62,16 @@ export function ordersComplete(data) {
   };
 }
 
-export function subscribeTrades(symbol) {
+export function subscribeDeals(symbol) {
   return {
-    type: 'EXCHANGE.SUBSCRIBE_TRADES',
+    type: 'EXCHANGE.SUBSCRIBE_DEALS',
     payload: symbol,
   };
 }
 
-export function tradesComplete(data) {
+export function dealsComplete(data) {
   return {
-    type: 'EXCHANGE.TRADES_COMPLETE',
+    type: 'EXCHANGE.DEALS_COMPLETE',
     payload: data,
   };
 }

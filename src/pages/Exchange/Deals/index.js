@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getTranslate } from 'react-localize-redux/lib/index';
 
-import TradesView from './TradesView';
-import { subscribeTrades } from '../../../actions/exchangeActions';
+import DealsView from './DealsView';
+import { subscribeDeals } from '../../../actions/exchangeActions';
 
 @connect(store => {
   return {
     translate: getTranslate(store.locale),
-    trades: store.exchange.trades,
+    deals: store.exchange.deals,
     symbol: store.exchange.configs.symbol,
   };
 })
@@ -22,15 +22,15 @@ export default class extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.symbol !== nextProps.symbol) {
       this.symbol = nextProps.symbol;
-      this.props.dispatch(subscribeTrades(this.props.symbol));
+      this.props.dispatch(subscribeDeals(this.props.symbol));
     }
   }
 
   render() {
     return (
-      <TradesView
+      <DealsView
         translate={this.props.translate}
-        trades={this.props.trades}
+        deals={this.props.deals}
         symbol={this.props.symbol}
       />
     );

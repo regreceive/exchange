@@ -22,6 +22,11 @@ export default class extends React.Component {
     }
   }
 
+  // 作为暴露为route的入口组件，会收到多次props更新，已经提取了有用的route的参数到redux中，所以不需要重复渲染
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return <GridView />;
   }

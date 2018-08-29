@@ -7,17 +7,7 @@ import uuid from 'uuid/v1';
 import constants from '../../../services/constants';
 
 @connect(store => {
-  let { markets } = store.exchange;
-  const { coins } = markets;
-
-  markets = coins.map(coin => {
-    return {
-      coin: coin[0],
-      price: coin[1],
-      change: coin[2],
-      key: uuid(),
-    };
-  });
+  const { markets } = store.exchange;
 
   return {
     translate: getTranslate(store.locale),
@@ -26,7 +16,16 @@ import constants from '../../../services/constants';
 })
 export default class List extends React.Component {
   render() {
-    const { translate } = this.props;
+    const { translate, markets } = this.props;
+    const dataSource = markets.map(row => {
+      return {
+        coin: row[0],
+        price: row[1],
+        change: row[2],
+        key: uuid(),
+      };
+    });
+
     const columns = [
       {
         title: translate('exchange.coin'),
@@ -62,11 +61,7 @@ export default class List extends React.Component {
 
     return (
       <div className={this.props.className}>
-        <Table
-          columns={columns}
-          dataSource={this.props.markets}
-          pagination={false}
-        />
+        <Table columns={columns} dataSource={dataSource} pagination={false} />
       </div>
     );
   }

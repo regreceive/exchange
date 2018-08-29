@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Header from '../Header';
-import Market from '../Market';
+import Markets from '../Markets';
 import Notice from '../Notice';
 import Mscy from '../Mscy';
 import TradePanel from '../TradePanel';
 import Orders from '../Orders';
-import Trades from '../Trades';
+import Deals from '../Deals';
 import Chart from '../Chart';
 import Depth from '../Depth';
 import './GridView.css';
@@ -21,7 +21,7 @@ const GridView = () => {
       {/*边栏*/}
       <div styleName="aside">
         {/*行情*/}
-        <Market />
+        <Markets />
         {/*通知*/}
         <Notice />
       </div>
@@ -43,7 +43,7 @@ const GridView = () => {
       </div>
       {/*实时成交*/}
       <div styleName="trades">
-        <Trades />
+        <Deals />
       </div>
       {/*币种信息*/}
       <div styleName="token-details">

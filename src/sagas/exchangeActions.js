@@ -8,8 +8,7 @@ function createSocketChannel() {
   return eventChannel(emit => {
     conn
       .on('markets', (symbol, extraArgs, data) => {
-        const { tick } = data;
-        return emit(actions.marketsComplete(tick));
+        return emit(actions.marketsComplete(data.tick.markets));
       })
       .on('latest', (symbol, extraArgs, data) => {
         return emit(actions.latestComplete(data.tick.latest));
@@ -17,8 +16,8 @@ function createSocketChannel() {
       .on('orders', (symbol, extraArgs, data) => {
         return emit(actions.ordersComplete(data.tick));
       })
-      .on('trades', (symbol, extraArgs, data) => {
-        return emit(actions.tradesComplete(data.tick.trades));
+      .on('deals', (symbol, extraArgs, data) => {
+        return emit(actions.dealsComplete(data.tick.deals));
       });
 
     return () => {
@@ -46,7 +45,7 @@ function* switchMarkets(action) {
 }
 
 function* subscribeLatest(action) {
-  const [symbol] = action.payload.split('_');
+  const symbol = action.payload.replace('_', '');
   try {
     yield call([conn, 'subscribe'], { sub: `market.${symbol}.latest` });
   } catch (e) {
@@ -55,7 +54,7 @@ function* subscribeLatest(action) {
 }
 
 function* subscribeOrders(action) {
-  const [symbol] = action.payload.split('_');
+  const symbol = action.payload.replace('_', '');
   try {
     yield call([conn, 'subscribe'], { sub: `market.${symbol}.orders` });
   } catch (e) {
@@ -63,10 +62,10 @@ function* subscribeOrders(action) {
   }
 }
 
-function* subscribeTrades(action) {
-  const [symbol] = action.payload.split('_');
+function* subscribeDeals(action) {
+  const symbol = action.payload.replace('_', '');
   try {
-    yield call([conn, 'subscribe'], { sub: `market.${symbol}.trades` });
+    yield call([conn, 'subscribe'], { sub: `market.${symbol}.deals` });
   } catch (e) {
     console.log(e);
   }
@@ -85,5 +84,5 @@ export function* watchMarket() {
   yield takeEvery('EXCHANGE.SWITCH_MARKETS', switchMarkets);
   yield takeEvery('EXCHANGE.SUBSCRIBE_LATEST', subscribeLatest);
   yield takeEvery('EXCHANGE.SUBSCRIBE_ORDERS', subscribeOrders);
-  yield takeEvery('EXCHANGE.SUBSCRIBE_TRADES', subscribeTrades);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_DEALS', subscribeDeals);
 }

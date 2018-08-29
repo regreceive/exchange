@@ -1,72 +1,84 @@
-
 .limit {
-  padding:0 30px;
+  justify-content: space-evenly;
 
-  div {
+  dl {
+    margin: 0;
+
+    &.price {
+      min-height: 110px;
+    }
+  }
+
+  dt {
+    display: block;
     margin-bottom: 5px;
-    color:#61688a;
+    color: #61688a;
+    font-size: 14px;
   }
 
-  .unit {
-    position: absolute;
-    top: 26px;
-    right: 20px;
-    height: 40px; 
-    color:#61688a;
-    line-height: 40px;
-    text-transform: uppercase;  
+  dd {
+    margin: 0;
   }
 
-  .unit-u {
-    position: absolute;
-    right: 20px;
-    height: 40px; 
-    color:#61688a;
-    line-height: 40px;
-    text-transform: uppercase; 
+  label {
+    position: relative;
+    display: block;
+
+    .unit {
+      position: absolute;
+      right: 20px;
+      height: 40px;
+      color: #61688a;
+      line-height: 40px;
+      text-transform: uppercase;
+      user-select: none;
+    }
   }
 
-  .bg {
+  .covert {
     height: 24px;
-    margin-bottom: 30px;
-    background-color: rgba(78,91,133,.4);
-    overflow: hidden;
-    font-size: 12px;
+    padding-left: 20px;
+    border-radius: 0 0 3px 3px;
+    background-color: rgba(78, 91, 133, .4);
     line-height: 24px;
-        
+    user-select: none;
   }
 
-  .info {
-    height: 46px;
+  .range {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -20px;
+
+    em {
+      text-transform: uppercase;
+      text-decoration: none;
+      user-select: none;
+    }
+  }
+
+  .amount {
+    padding: 10px 0;
     font-size: 16px;
-    line-height: 36px;       
+    line-height: 36px;
+    text-transform: uppercase;
   }
 
-  :global {
-    .ant-input {
-      border-color:#4e5b85;
-      color: #c7cce6;
-      background-color: #1e2235;
-    }
+  .button {
+    height: 40px;
+    background-color: #4e5b85;
+    font-size: 16px;
+    text-transform: uppercase;
 
-    .ant-btn {
-      height:40px;
-      border-color:transparent;
-      background-color: #4e5b85;
-      font-size:16px;
-
-      span {
-        color:#fff;
-      }
-            
+    span {
+      color: #fff;
     }
   }
-}
 
-.market {
-  :global {
-    .ant-input {
-      margin-bottom: 40px;
-    } 
+  input[disabled] {
+    cursor: default;
+
+    &::placeholder {
+      color: #61688a;
+    }
   }
 }

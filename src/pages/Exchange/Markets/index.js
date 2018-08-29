@@ -7,7 +7,7 @@ import {
   subscribeMarkets,
   switchMarkets,
 } from '../../../actions/exchangeActions';
-import MarketView from './MarketView';
+import MarketsView from './MarketsView';
 
 @connect(store => {
   return {
@@ -15,7 +15,7 @@ import MarketView from './MarketView';
     marketsSymbol: store.exchange.configs.marketsSymbol,
   };
 })
-export default class Layout extends React.Component {
+export default class extends React.Component {
   componentDidMount() {
     this.props.dispatch(subscribeMarkets(this.props.marketsSymbol));
   }
@@ -34,7 +34,7 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <MarketView
+      <MarketsView
         translate={this.props.translate}
         marketsSymbol={this.props.marketsSymbol}
         searchHandle={this.searchHandle}

@@ -41,7 +41,7 @@ function marketsHandle(socket, symbol, extraArgs, data) {
     ch: `market.${symbol}.markets`,
     ts: Date.now(),
     tick: {
-      coins: [['ENB', 1, 1], ['ECHO', 0, 0]],
+      markets: [['ENB', 1, 1], ['ECHO', 0, 0]],
     },
   });
 }
@@ -71,14 +71,14 @@ function ordersHandle(socket, symbol, extraArgs, data) {
   });
 }
 
-function tradesHandle(socket, symbol, extraArgs, data) {
-  subHandle(socket, symbol, extraArgs, data, 'orders');
+function dealsHandle(socket, symbol, extraArgs, data) {
+  subHandle(socket, symbol, extraArgs, data, 'deals');
 
   send(socket, {
-    ch: `market.${symbol}.trades`,
+    ch: `market.${symbol}.deals`,
     ts: Date.now(),
     tick: {
-      trades: [[Date.now(), 0, 100, 200], [Date.now(), 1, 50, 220]],
+      deals: [[Date.now(), 0, 100, 200], [Date.now(), 1, 50, 220]],
     },
   });
 }
@@ -101,8 +101,8 @@ io.on('connect', socket => {
         case 'orders':
           ordersHandle(socket, symbol, extraArgs, data);
           break;
-        case 'trades':
-          tradesHandle(socket, symbol, extraArgs, data);
+        case 'deals':
+          dealsHandle(socket, symbol, extraArgs, data);
       }
     } else if (data.hasOwnProperty('unsub')) {
       const [, symbol, channel, ...extraArgs] = data.unsub.split('.');
