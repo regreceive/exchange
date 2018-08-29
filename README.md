@@ -170,3 +170,28 @@ period | K线周期 | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
   }
 }
 ```
+
+### 成交明细
+
+订阅实时成交
+
+```js
+{"sub":"market.$symbol.deals"}
+```
+
+*返回*
+
+[timestamp, 方向, 成交价, 数量]
+
+```js
+{
+  "ch":"market.ethusdt.deals",
+  "ts":1535529998712,
+  "tick":{
+    "deals":[
+      [1535529998712,0,100,200],
+      ...
+    ]
+  }
+}
+```

@@ -8,14 +8,17 @@ const initState = (function() {
 
   // price, change, high, low, vol
   const latest = [0, 0, 0, 0, 0];
-  // timestamp, type, price, amount
-  const trades = [[0, 0, 0, 0]];
+  // timestamp, direction, price, amount
+  const deals = [[0, 0, 0, 0]];
+
+  const trade = { funds: 0, assets: 0 };
 
   return {
     markets,
     orders,
     latest,
-    trades,
+    deals,
+    trade,
     configs: {
       symbol: '',
       marketsSymbol: 'usdt',
@@ -53,9 +56,9 @@ const exchange = (state = initState, action) => {
       const orders = action.payload;
       return { ...state, orders };
     }
-    case 'EXCHANGE.TRADES_COMPLETE': {
-      const trades = action.payload;
-      return { ...state, trades };
+    case 'EXCHANGE.DEALS_COMPLETE': {
+      const deals = action.payload;
+      return { ...state, deals };
     }
     default:
       return state;

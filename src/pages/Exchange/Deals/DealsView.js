@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import uuid from 'uuid/v1';
 import cs from 'classnames';
 
-import './TradesView.css';
+import './DealsView.css';
 
 function toTime(timestamp) {
   return dayjs(timestamp).format('HH:mm:ss');
@@ -15,7 +15,7 @@ function toType(bit) {
   return types[bit];
 }
 
-const Trades = ({ lists }) => {
+const Deals = ({ lists }) => {
   return lists.map(list => {
     return (
       <dd key={uuid()}>
@@ -38,7 +38,7 @@ const Trades = ({ lists }) => {
   });
 };
 
-const TradesView = ({ translate, trades, coin }) => {
+const DealsView = ({ translate, deals, coin }) => {
   return (
     <div styleName="container">
       <div styleName="header">
@@ -57,9 +57,9 @@ const TradesView = ({ translate, trades, coin }) => {
             </Col>
           </Row>
         </dt>
-        <Trades lists={trades} />
+        <Deals lists={deals} />
       </dl>
     </div>
   );
 };
-export default TradesView;
+export default DealsView;

@@ -1,3 +1,13 @@
+// 去除input[type='number']的上下箭头
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 .container {
   display: grid;
   grid-template-rows: 60px 660px 490px 530px 480px;
@@ -35,29 +45,29 @@
     }
 
     .ant-tabs-ink-bar {
-      background-color:#7a98f7;
+      background-color: #7a98f7;
     }
 
     .ant-tabs-nav .ant-tabs-tab-active {
-      border-color:#7a98f7;
-      color:#7a98f7;
+      border-color: #7a98f7;
+      color: #7a98f7;
     }
 
     .ant-tabs-tab:hover {
-      color:#fff;
+      color: #fff;
     }
 
     .ant-tabs-tab-active:hover {
-      color:#7a98f7;
+      color: #7a98f7;
     }
 
     .ant-tabs-nav {
-      font-size:16px;
+      font-size: 16px;
     }
 
     .ant-tabs-nav-scroll {
-      padding:0 30px;
-      background:#1b1e2e;
+      padding: 0 30px;
+      background: #1b1e2e;
       box-shadow: 0 3px 6px rgba(0,0,0,.1);
     }
   }
