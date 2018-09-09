@@ -1,5 +1,6 @@
 > 这是公司项目，只公开部分前端和node.js测试后端，项目脚手架使用eject后的create-react-app，webpack插件经过反复优选，达到了开发便捷和开发效率。前后端通信使用了socket.io和fetch，采用redux和saga做状态管理和异步。可直接用本项目作为你的开发脚手架，我会继续维护。
 
+
 ## 预置命令
 
 安装
