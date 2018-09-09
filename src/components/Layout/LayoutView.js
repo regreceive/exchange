@@ -14,18 +14,16 @@ const LayoutView = props => {
 
   return (
     <ConnectedRouter history={props.history}>
-      <div>
-        <section id="content">
-          <Switch>
-            <Route
-              exact
-              path={constants.BASE_HOST + '/exchange/:symbol'}
-              component={props.exchange}
-            />
-            <Redirect to={defaultPathExchange} />
-          </Switch>
-        </section>
-      </div>
+      <section>
+        <Switch>
+          <Route
+            exact
+            path={constants.BASE_HOST + '/exchange/:symbol'}
+            component={props.exchange}
+          />
+          <Redirect to={defaultPathExchange} />
+        </Switch>
+      </section>
     </ConnectedRouter>
   );
 };

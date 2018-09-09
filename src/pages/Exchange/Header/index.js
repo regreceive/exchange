@@ -1,14 +1,14 @@
 import React from 'react';
 
 import './Header.css';
-import logo from '../assets/logo.svg';
+import Logo from '../assets/logo.svg';
 
 const Index = () => {
   return (
     <div styleName="container">
       <h1 styleName="head-logo">
         <a href="/">
-          <img src={logo} alt="" />
+          <Logo />
         </a>
       </h1>
       <ul styleName="head-nav">

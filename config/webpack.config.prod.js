@@ -70,7 +70,10 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: [
+    require.resolve('./polyfills'),
+    paths.appIndexJs,
+  ],
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -155,6 +158,21 @@ module.exports = {
               limit: 10000,
               name: 'static/media/[name].[hash:8].[ext]',
             },
+          },
+          {
+            test: /\.svg$/,
+            use: [
+              'babel-loader',
+              {
+                loader: 'react-svg-loader',
+                options: {
+                  svgo: {
+                    plugins: [{ removeTitle: false }],
+                    floatPrecision: 2,
+                  },
+                },
+              },
+            ],
           },
           // Process JS with Babel.
           {

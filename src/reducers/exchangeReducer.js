@@ -11,7 +11,7 @@ const initState = (function() {
   // timestamp, direction, price, amount
   const deals = [[0, 0, 0, 0]];
 
-  const trade = { funds: 0, assets: 0 };
+  const trade = { money: 0, stock: 0 };
 
   return {
     markets,

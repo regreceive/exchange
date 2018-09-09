@@ -7,7 +7,7 @@ import Exchange from '../../pages/Exchange/';
 import constant from '../../services/constants';
 
 import history from '../../history';
-import { clearSession, changeLanguage } from '../../actions/globalActions';
+import { clearSession } from '../../actions/globalActions';
 import { openInfoModal } from '../../actions/utilActions';
 import LayoutView from './LayoutView';
 
@@ -16,7 +16,6 @@ import Language from 'lang/index';
 @connect(store => {
   return {
     translate: getTranslate(store.locale),
-    locale: store.locale,
     currentLanguage: getActiveLanguage(store.locale).code,
   };
 })
@@ -66,19 +65,12 @@ export default class extends React.Component {
     this.props.dispatch(clearSession());
   }
 
-  setActiveLanguage = language => {
-    this.props.dispatch(
-      changeLanguage(this.props.ethereumNode, language, this.props.locale),
-    );
-  };
-
   render() {
     return (
       <LayoutView
         history={history}
         exchange={Exchange}
         supportedLanguages={Language.supportLanguage}
-        setActiveLanguage={this.setActiveLanguage}
         currentLanguage={this.props.currentLanguage}
       />
     );

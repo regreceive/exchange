@@ -1,23 +1,3 @@
-const app = require('express')();
-const server = require('http').createServer(app);
-const bodyParser = require('body-parser');
-
-const io = require('socket.io')(server, {
-  path: '/ws',
-  serveClient: false,
-  // below are engine.IO options
-  pingInterval: 10000,
-  pingTimeout: 5000,
-  cookie: false,
-});
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.get('/api/user/user-data', endCaptcha);
-
-server.listen(8000);
-
 function send(socket, data) {
   console.log('send', JSON.stringify(data));
   socket.send(JSON.stringify(data));
@@ -60,7 +40,7 @@ function latestHandle(socket, symbol, extraArgs, data) {
     ch: `market.${symbol}.latest`,
     ts: Date.now(),
     tick: {
-      latest: [281.51, -1.67, 292.08, 269.48, 98794],
+      latest: [0.007, -1.67, 292.08, 269.48, 98794],
     },
   });
 }
@@ -90,35 +70,59 @@ function dealsHandle(socket, symbol, extraArgs, data) {
   });
 }
 
-io.on('connect', socket => {
-  console.log('connected[id]: ', socket.id);
-  socket.on('message', text => {
-    const data = JSON.parse(text);
-    console.log('receive', text);
-    if (data.hasOwnProperty('sub')) {
-      // 订阅
-      const [, symbol, channel, ...extraArgs] = data.sub.split('.');
-      switch (channel) {
-        case 'markets':
-          marketsHandle(socket, symbol, extraArgs, data);
-          break;
-        case 'latest':
-          latestHandle(socket, symbol, extraArgs, data);
-          break;
-        case 'orders':
-          ordersHandle(socket, symbol, extraArgs, data);
-          break;
-        case 'deals':
-          dealsHandle(socket, symbol, extraArgs, data);
+function removeCache() {
+  for (const key in require.cache) {
+    if (key.includes('mock')) delete require.cache[key];
+  }
+}
+
+function requestDepthHandle() {
+  const depth = './depth';
+  removeCache();
+  try {
+    return require(depth);
+  } catch (e) {
+    console.log(e);
+  }
+
+  //   socket.emit('chart:depth', {
+  //     data: getData().depth,
+  //     action: 'first get',
+  //     msg: 'success',
+  //   });
+}
+
+module.exports = ws => {
+  ws.on('connect', socket => {
+    console.log('connected[id]: ', socket.id);
+    socket.on('message', text => {
+      const data = JSON.parse(text);
+      console.log('receive', text);
+      if (data.hasOwnProperty('sub')) {
+        // 订阅
+        const [, symbol, channel, ...extraArgs] = data.sub.split('.');
+        switch (channel) {
+          case 'markets':
+            marketsHandle(socket, symbol, extraArgs, data);
+            break;
+          case 'latest':
+            latestHandle(socket, symbol, extraArgs, data);
+            break;
+          case 'orders':
+            ordersHandle(socket, symbol, extraArgs, data);
+            break;
+          case 'deals':
+            dealsHandle(socket, symbol, extraArgs, data);
+        }
+      } else if (data.hasOwnProperty('unsub')) {
+        const [, symbol, channel, ...extraArgs] = data.unsub.split('.');
+        switch (channel) {
+          case 'markets':
+          case 'latest':
+            unsubHandle(socket, symbol, extraArgs, data);
+            break;
+        }
       }
-    } else if (data.hasOwnProperty('unsub')) {
-      const [, symbol, channel, ...extraArgs] = data.unsub.split('.');
-      switch (channel) {
-        case 'markets':
-        case 'latest':
-          unsubHandle(socket, symbol, extraArgs, data);
-          break;
-      }
-    }
+    });
   });
-});
+};

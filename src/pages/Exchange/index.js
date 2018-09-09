@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setSymbol, subscribeLatest } from '../../actions/exchangeActions';
+import * as exchange from '../../actions/exchangeActions';
+import * as user from '../../actions/userActions';
 import GridView from './Grid/GridView';
 
 @connect()
@@ -17,12 +18,13 @@ export default class extends React.Component {
 
     if (this.symbol !== symbol) {
       this.symbol = symbol;
-      this.props.dispatch(setSymbol(symbol));
-      this.props.dispatch(subscribeLatest(symbol));
+      this.props.dispatch(exchange.setSymbol(symbol));
+      this.props.dispatch(exchange.subscribeLatest(symbol));
+      this.props.dispatch(user.getUserdata());
     }
   }
 
-  // 作为暴露为route的入口组件，会收到多次props更新，已经提取了有用的route的参数到redux中，所以不需要重复渲染
+  // 已经提取了route的参数到redux中，所以不需要重复渲染
   shouldComponentUpdate() {
     return false;
   }
