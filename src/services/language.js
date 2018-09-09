@@ -52,3 +52,10 @@ export function initLanguage(store) {
 export function getLanguage(key) {
   return import('lang/' + key + '.json');
 }
+
+export function setLanguage(packName, dispatch) {
+  const languagePack = getLanguage(packName);
+  languagePack.then(data => {
+    dispatch(addTranslationForLanguage(data, packName));
+  });
+}

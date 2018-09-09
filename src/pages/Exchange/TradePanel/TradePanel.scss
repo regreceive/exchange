@@ -1,5 +1,26 @@
-.limit {
+.limit, .market {
   justify-content: space-evenly;
+
+  .available {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1f2943;
+    font-size: 14px;
+
+    > a {
+      padding-right: 15px;
+      color: #7a98f7;
+
+      &:hover {
+        color: #aabdfa;
+      }
+    }
+
+    > span {
+      text-transform: uppercase;
+    }
+  }
 
   dl {
     margin: 0;
@@ -18,6 +39,10 @@
 
   dd {
     margin: 0;
+
+    &.holder {
+      height: 122px;
+    }
   }
 
   label {

@@ -1,28 +1,34 @@
-let io = require('socket.io')();
+const app = require('express')();
+const server = require('http').createServer(app);
+const bodyParser = require('body-parser');
 
-function removeCache() {
-  for (const key in require.cache) {
-    if (key.includes('mock')) delete require.cache[key];
-  }
-}
+const api = require('./controller');
+const socket = require('./socket');
 
-function getData() {
-  var str = '../mock/index';
-  removeCache();
-  try {
-    return require(str);
-  } catch (e) {
-    console.log(e);
-    return 'mock数据有问题';
-  }
-}
-
-io.on('connection', socket => {
-  console.log('新用户加入');
-  socket.emit('chart:depth', {
-    data: getData().depth,
-    action: 'first get',
-    msg: 'success',
-  });
+const io = require('socket.io')(server, {
+  path: '/ws',
+  serveClient: false,
+  // below are engine.IO options
+  pingInterval: 10000,
+  pingTimeout: 5000,
+  cookie: false,
 });
-module.exports = io;
+
+socket(io);
+
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
+const HOST = process.env.HOST || 'localhost';
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', `http://${HOST}:${DEFAULT_PORT}`);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'x-requested-with,Content-Type');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.get('/api/user/user-data', api.userData);
+
+server.listen(8000);

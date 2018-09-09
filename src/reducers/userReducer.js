@@ -11,9 +11,9 @@ const initState = (function() {
 
 const exchange = (state = initState, action) => {
   switch (action.type) {
-    case 'USER.INFO_COMPLETE': {
-      const info = action.payload;
-      return { ...state, ...info };
+    case 'USER.USER_DATA_COMPLETE': {
+      const assets = action.payload;
+      return { ...state, assets };
     }
     default:
       return state;
