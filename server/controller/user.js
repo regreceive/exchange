@@ -1,5 +1,5 @@
-exports.userData = (req, res) => {
-  res.json({
+exports.userData = ctx => {
+  ctx.body = {
     status: 'ok',
     data: {
       assets: {
@@ -9,5 +9,5 @@ exports.userData = (req, res) => {
         etc: 2,
       },
     },
-  });
+  };
 };

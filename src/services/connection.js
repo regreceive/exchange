@@ -1,5 +1,4 @@
 import io from 'socket.io-client';
-import inflate from 'pako/lib/inflate';
 import findIndex from 'lodash/findIndex';
 
 const subscribers = [];

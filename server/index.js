@@ -1,9 +1,13 @@
-const app = require('express')();
-const server = require('http').createServer(app);
-const bodyParser = require('body-parser');
+const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
+const onError = require('koa-onerror');
+const logger = require('koa-logger');
 
-const api = require('./controller');
 const socket = require('./socket');
+const router = require('./router');
+
+const app = new Koa();
+const server = require('http').createServer(app.callback());
 
 const io = require('socket.io')(server, {
   path: '/ws',
@@ -16,19 +20,42 @@ const io = require('socket.io')(server, {
 
 socket(io);
 
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
-const HOST = process.env.HOST || 'localhost';
+const allowHost = 'localhost';
+const allowPort = 3000;
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', `http://${HOST}:${DEFAULT_PORT}`);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'x-requested-with,Content-Type');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  next();
+onError(app);
+app.use(
+  bodyParser({
+    enableTypes: ['json', 'form', 'text'],
+  }),
+);
+
+app.use(async (ctx, next) => {
+  const start = Date.now();
+  await next();
+  const ms = Date.now() - start;
+  ctx.set('X-Response-Time', `${ms}ms`);
 });
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
-app.get('/api/user/user-data', api.userData);
+app.use(async (ctx, next) => {
+  await next();
+  ctx.set({
+    'Access-Control-Allow-Origin': `http://${allowHost}:${allowPort}`,
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+    'Access-Control-Allow-Headers':
+      'x-requested-with, accept, origin, content-type',
+    'Access-Control-Allow-Credentials': 'true',
+  });
 
-server.listen(8000);
+  if (ctx.request.method === 'OPTIONS') {
+    ctx.response.status = 200;
+  }
+});
+
+app.use(logger());
+
+app.use(router.routes());
+
+server.listen(8000, () => {
+  console.log('listen on ' + 8000);
+});
