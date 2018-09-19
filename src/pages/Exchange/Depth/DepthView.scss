@@ -1,0 +1,24 @@
+@import '../common.scss';
+
+.container {
+  height: calc(100% - 50px);
+  font-size: 12px;
+
+  .header {
+    @extend .win-header;
+  }
+
+  :global {
+    .tooltip {
+      min-width: 100px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 12px;
+
+      span {
+        float: left;
+        width: 60px;
+      }
+    }
+  }
+}

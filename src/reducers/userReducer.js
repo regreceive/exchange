@@ -1,15 +1,13 @@
-const initState = (function() {
-  return {
-    assets: {
-      usdt: 0,
-      btc: 0,
-      eth: 0,
-      etc: 0,
-    },
-  };
-})();
+const initState = {
+  assets: {
+    usdt: 0,
+    btc: 0,
+    eth: 0,
+    etc: 0,
+  },
+};
 
-const exchange = (state = initState, action) => {
+const user = (state = initState, action) => {
   switch (action.type) {
     case 'USER.USER_DATA_COMPLETE': {
       const assets = action.payload;
@@ -20,4 +18,4 @@ const exchange = (state = initState, action) => {
   }
 };
 
-export default exchange;
+export default user;

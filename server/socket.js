@@ -65,7 +65,20 @@ function dealsHandle(socket, symbol, extraArgs, data) {
     ch: `market.${symbol}.deals`,
     ts: Date.now(),
     tick: {
-      deals: [[Date.now(), 0, 100, 200], [Date.now(), 1, 50, 220]],
+      deals: [[Date.now(), 0, 100, 200], [Date.now(), 1, 50, 221]],
+    },
+  });
+}
+
+function depthHandle(socket, symbol, extraArgs, data) {
+  subHandle(socket, symbol, extraArgs, data, 'depth');
+
+  send(socket, {
+    ch: `market.${symbol}.depth`,
+    ts: Date.now(),
+    tick: {
+      bids: [[5, 10], [6, 9], [7, 8], [8, 7], [9, 1]],
+      asks: [[9, 1], [10, 2], [11, 3], [12, 40], [13, 41.5]],
     },
   });
 }
@@ -113,6 +126,10 @@ module.exports = ws => {
             break;
           case 'deals':
             dealsHandle(socket, symbol, extraArgs, data);
+            break;
+          case 'depth':
+            depthHandle(socket, symbol, extraArgs, data);
+            break;
         }
       } else if (data.hasOwnProperty('unsub')) {
         const [, symbol, channel, ...extraArgs] = data.unsub.split('.');

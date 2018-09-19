@@ -42,7 +42,7 @@ const GridView = () => {
         <Depth />
       </div>
       {/*实时成交*/}
-      <div styleName="trades">
+      <div styleName="deals">
         <Deals />
       </div>
       {/*币种信息*/}

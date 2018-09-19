@@ -75,3 +75,17 @@ export function dealsComplete(data) {
     payload: data,
   };
 }
+
+export function subscribeDepth(symbol) {
+  return {
+    type: 'EXCHANGE.SUBSCRIBE_DEPTH',
+    payload: symbol,
+  };
+}
+
+export function depthComplete(data) {
+  return {
+    type: 'EXCHANGE.DEPTH_COMPLETE',
+    payload: data,
+  };
+}

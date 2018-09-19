@@ -18,6 +18,9 @@ function createSocketChannel() {
       })
       .on('deals', (symbol, extraArgs, data) => {
         return emit(actions.dealsComplete(data.tick.deals));
+      })
+      .on('depth', (symbol, extraArgs, data) => {
+        return emit(actions.depthComplete(data.tick));
       });
 
     return () => {
@@ -71,6 +74,15 @@ function* subscribeDeals(action) {
   }
 }
 
+function* subscribeDepth(action) {
+  const symbol = action.payload.replace('_', '');
+  try {
+    yield call([conn, 'subscribe'], { sub: `market.${symbol}.depth` });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* socketResponseHandle(action) {
   yield put(action);
 }
@@ -85,4 +97,5 @@ export function* watchMarket() {
   yield takeEvery('EXCHANGE.SUBSCRIBE_LATEST', subscribeLatest);
   yield takeEvery('EXCHANGE.SUBSCRIBE_ORDERS', subscribeOrders);
   yield takeEvery('EXCHANGE.SUBSCRIBE_DEALS', subscribeDeals);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_DEPTH', subscribeDepth);
 }
