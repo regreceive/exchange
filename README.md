@@ -62,6 +62,8 @@ period | K线周期 | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 }
 ```
 
+> 限于篇幅，以下socket订阅api均先返回订阅成功信息后，再推送订阅数据。
+
 ### 取消订阅
 
 ***客户端***
@@ -93,8 +95,7 @@ period | K线周期 | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 {"sub":"market.$symbol.markets"}
 ```
 
-*返回*
-- coins: 币种、最新价、涨幅
+*订阅成功返回*
 
 ```js
 {
@@ -103,6 +104,12 @@ period | K线周期 | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
   "subbed":"market.$symbol.markets",
   "ts":1535445731347
 }
+```
+
+*推送返回*
+- coins: 币种、最新价、涨幅
+
+```js
 {
   "ch":"market.usdt.markets",
   "ts":1535445731347,
@@ -198,7 +205,7 @@ period | K线周期 | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 
 ### 挂盘深度
 
-订阅市场深度。为了让图表显示可读性强，==买卖挂盘价格边界（买盘最低价和卖盘最高价）必须保持对称，并且有挂盘量。==
+订阅市场深度。为了让图表显示可读性强，**买卖挂盘价格边界（买盘最低价和卖盘最高价）必须保持对称，并且有挂盘量。**
 
 ```js
 {"sub":"market.$symbol.depth"}
