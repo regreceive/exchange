@@ -75,6 +75,7 @@
     "build": "npm-run-all build-css build-js",
     "build-js": "node scripts/build.js",
     "build:release": "cross-env yarn build-css && GENERATE_SOURCEMAP=false node scripts/build.js --release",
+    "fake-server": "node server",
     "lint-css": "stylelint 'src/**/*.scss' --fix",
     "test": "node scripts/test.js --env=jsdom"
   },

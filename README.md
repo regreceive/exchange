@@ -1,3 +1,5 @@
+仿火币交易所，要做的东西比较多，一点点更新。最终要实现typescript、服务端渲染、完整流程的交易所。
+
 ## 预置命令
 
 安装
@@ -15,22 +17,15 @@ $ yarn start
 $ yarn build
 ```
 
+启动伪服务端（提供http和ws测试数据）
+```shell
+$ yarn fake-server
+```
+
 产品打包
 ```shell
 $ yarn build:release
 ```
-
-## 说明
-
-浏览器端使用[socket.io-client](https://github.com/socketio/socket.io-client)，所有的数据请求和服务端返回都遵循以下格式：
-
-```js
-["message", 数据...]
-
-// 比如
-["message", {"sub":"market.usdt.markets"}]
-```
-> 为方便阅读，以下所有API都是实际数据，没有套用外面一层消息体，实际开发中请自行包装上述消息体。
 
 ### 订阅
 
@@ -62,7 +57,7 @@ period | K线周期 | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 }
 ```
 
-> 限于篇幅，以下socket订阅api均先返回订阅成功信息后，再推送订阅数据。
+> 便于阅读，以下socket订阅api均先返回订阅成功信息后，再推送订阅数据。
 
 ### 取消订阅
 
