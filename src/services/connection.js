@@ -1,6 +1,7 @@
 import findIndex from 'lodash/findIndex';
+import { addEventListener } from 'consolidated-events';
 
-import ReconnectingWebSocket from './re-websocket';
+import ReconnectingWebSocket from './lib/re-websocket';
 
 const subscribers = [];
 const handles = new Map();
@@ -68,28 +69,27 @@ function handle(data) {
 }
 
 export function createWebSocketConnection() {
-  // socket = io(WS_URL, {
-  //   path: '/ws',
-  //   autoConnect: true,
-  // });
   socket = new ReconnectingWebSocket(WS_URL);
 
-  socket.addEventListener('open', () => {
+  const removeOpen = addEventListener(socket, 'open', () => {
     for (let sub of subscribers.values()) {
       socket.send(JSON.stringify(sub));
     }
     connected = true;
   });
 
-  socket.addEventListener('close', () => {
+  const removeClose = addEventListener(socket, 'close', () => {
     if (forceClosed) {
+      removeOpen();
+      removeClose();
+      removeMessage();
       socket = null;
       return;
     }
     connected = false;
   });
 
-  socket.addEventListener('message', ({ data }) => {
+  const removeMessage = addEventListener(socket, 'message', ({ data }) => {
     const msg = JSON.parse(data);
     if (msg.tick) {
       handle(msg);
