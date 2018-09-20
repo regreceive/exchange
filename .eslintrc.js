@@ -33,6 +33,7 @@ module.exports = {
           allow: ['warn', 'error', 'info'],
         },
       ],
+      'no-undef': 0,
       'jsx-a11y/href-no-hash': 'off',
     }
 };

@@ -1,12 +1,12 @@
-import io from 'socket.io-client';
 import findIndex from 'lodash/findIndex';
+
+import ReconnectingWebSocket from './re-websocket';
 
 const subscribers = [];
 const handles = new Map();
 let connected = false;
 let forceClosed = false;
 const WS_URL = process.env.REACT_APP_WS;
-const WS_URL_PATH = process.env.REACT_APP_WS_PATH;
 let socket;
 
 export function subscribe(data) {
@@ -68,26 +68,29 @@ function handle(data) {
 }
 
 export function createWebSocketConnection() {
-  socket = io(WS_URL, {
-    path: WS_URL_PATH,
-    autoConnect: true,
-  });
-  socket.on('connect', () => {
+  // socket = io(WS_URL, {
+  //   path: '/ws',
+  //   autoConnect: true,
+  // });
+  socket = new ReconnectingWebSocket(WS_URL);
+
+  socket.addEventListener('open', () => {
     for (let sub of subscribers.values()) {
       socket.send(JSON.stringify(sub));
     }
     connected = true;
   });
 
-  socket.on('close', () => {
+  socket.addEventListener('close', () => {
     if (forceClosed) {
+      socket = null;
       return;
     }
     connected = false;
   });
 
-  socket.on('message', text => {
-    const msg = JSON.parse(text);
+  socket.addEventListener('message', ({ data }) => {
+    const msg = JSON.parse(data);
     if (msg.tick) {
       handle(msg);
     }

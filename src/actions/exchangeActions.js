@@ -89,3 +89,17 @@ export function depthComplete(data) {
     payload: data,
   };
 }
+
+export function subscribeLine(symbol) {
+  return {
+    type: 'EXCHANGE.SUBSCRIBE_LINE',
+    payload: symbol,
+  };
+}
+
+export function lineComplete(data) {
+  return {
+    type: 'EXCHANGE.LINE_COMPLETE',
+    payload: data,
+  };
+}

@@ -6,7 +6,6 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import registerServiceWorker from './registerServiceWorker';
 import { store, persistor } from './store';
 import Layout from './components/Layout';
-// import './socket';
 
 ReactDOM.render(
   <Provider store={store}>

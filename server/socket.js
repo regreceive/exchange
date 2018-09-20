@@ -28,7 +28,7 @@ function marketsHandle(socket, symbol, extraArgs, data) {
     ch: `market.${symbol}.markets`,
     ts: Date.now(),
     tick: {
-      markets: [['ENB', 1, 1], ['ECHO', 0, 0]],
+      markets: [['ENB', 1, 1], ['ECHO', 0, 2]],
     },
   });
 }
@@ -83,31 +83,19 @@ function depthHandle(socket, symbol, extraArgs, data) {
   });
 }
 
-function removeCache() {
-  for (const key in require.cache) {
-    if (key.includes('mock')) delete require.cache[key];
-  }
-}
+function lineHandle(socket, symbol, extraArgs, data) {
+  subHandle(socket, symbol, extraArgs, data, 'line');
 
-function requestDepthHandle() {
-  const depth = './depth';
-  removeCache();
-  try {
-    return require(depth);
-  } catch (e) {
-    console.log(e);
-  }
-
-  //   socket.emit('chart:depth', {
-  //     data: getData().depth,
-  //     action: 'first get',
-  //     msg: 'success',
-  //   });
+  send(socket, {
+    ch: `market.${symbol}.line`,
+    ts: Date.now(),
+    tick: {},
+  });
 }
 
 module.exports = ws => {
-  ws.on('connect', socket => {
-    console.log('connected[id]: ', socket.id);
+  ws.on('connection', socket => {
+    console.log('connected!');
     socket.on('message', text => {
       const data = JSON.parse(text);
       console.log('receive', text);
@@ -129,6 +117,9 @@ module.exports = ws => {
             break;
           case 'depth':
             depthHandle(socket, symbol, extraArgs, data);
+            break;
+          case 'line':
+            lineHandle(socket, symbol, extraArgs, data);
             break;
         }
       } else if (data.hasOwnProperty('unsub')) {

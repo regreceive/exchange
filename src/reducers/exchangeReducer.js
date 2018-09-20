@@ -18,6 +18,8 @@ const initState = (function() {
     asks: [[0, 0]], // 卖1价,卖1量
   };
 
+  const line = {};
+
   return {
     markets,
     orders,
@@ -25,6 +27,7 @@ const initState = (function() {
     deals,
     trade,
     depth,
+    line,
     configs: {
       symbol: '',
       marketsSymbol: 'usdt',
@@ -69,6 +72,10 @@ const exchange = (state = initState, action) => {
     case 'EXCHANGE.DEPTH_COMPLETE': {
       const depth = action.payload;
       return { ...state, depth };
+    }
+    case 'EXCHANGE.LINE_COMPLETE': {
+      const line = action.payload;
+      return { ...state, line };
     }
     default:
       return state;

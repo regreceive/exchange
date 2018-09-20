@@ -2,23 +2,16 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const onError = require('koa-onerror');
 const logger = require('koa-logger');
+const WebSocket = require('ws');
 
 const socket = require('./socket');
 const router = require('./router');
 
 const app = new Koa();
 const server = require('http').createServer(app.callback());
+const wss = new WebSocket.Server({ server, path: '/ws' });
 
-const io = require('socket.io')(server, {
-  path: '/ws',
-  serveClient: false,
-  // below are engine.IO options
-  pingInterval: 10000,
-  pingTimeout: 5000,
-  cookie: false,
-});
-
-socket(io);
+socket(wss);
 
 const allowHost = 'localhost';
 const allowPort = 3000;
