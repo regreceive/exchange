@@ -284,7 +284,7 @@
             eventTarget.dispatchEvent(generateEvent('close'));
           }
 
-          var timeout =
+          const timeout =
             self.reconnectInterval *
             Math.pow(self.reconnectDecay, self.reconnectAttempts);
           setTimeout(function() {
@@ -317,7 +317,7 @@
     };
 
     // Whether or not to create a websocket upon instantiation
-    if (this.automaticOpen == true) {
+    if (this.automaticOpen === true) {
       this.open(false);
     }
 
@@ -333,7 +333,7 @@
         }
         return ws.send(data);
       } else {
-        throw 'INVALID_STATE_ERR : Pausing to reconnect websocket';
+        throw new Error('INVALID_STATE_ERR : Pausing to reconnect websocket');
       }
     };
 

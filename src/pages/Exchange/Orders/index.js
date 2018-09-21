@@ -23,7 +23,7 @@ export default class extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.symbol !== nextProps.symbol) {
       this.symbol = nextProps.symbol;
-      this.props.dispatch(subscribeOrders(this.props.symbol));
+      this.props.dispatch(subscribeOrders(this.symbol));
     }
   }
 

@@ -18,9 +18,9 @@ export default class extends React.Component {
 
     if (this.symbol !== symbol) {
       this.symbol = symbol;
+      this.props.dispatch(user.getUserdata());
       this.props.dispatch(exchange.setSymbol(symbol));
       this.props.dispatch(exchange.subscribeLatest(symbol));
-      this.props.dispatch(user.getUserdata());
     }
   }
 

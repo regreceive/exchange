@@ -27,15 +27,14 @@ export default class extends React.Component {
     this.intervalIdle = null;
   }
 
-  componentWillMount() {
-    document.onload = this.resetTimer;
-    document.onmousemove = this.resetTimer;
-    document.onmousedown = this.resetTimer; // touchscreen presses
-    document.ontouchstart = this.resetTimer;
-    document.onclick = this.resetTimer; // touchpad clicks
-    document.onscroll = this.resetTimer; // scrolling with arrow keys
-    document.onkeypress = this.resetTimer;
-
+  componentDidMount() {
+    // document.onload = this.resetTimer;
+    // document.onmousemove = this.resetTimer;
+    // document.onmousedown = this.resetTimer; // touchscreen presses
+    // document.ontouchstart = this.resetTimer;
+    // document.onclick = this.resetTimer; // touchpad clicks
+    // document.onscroll = this.resetTimer; // scrolling with arrow keys
+    // document.onkeypress = this.resetTimer;
     // this.intervalIdle = setInterval(this.checkTimmer.bind(this), 10000);
   }
 
