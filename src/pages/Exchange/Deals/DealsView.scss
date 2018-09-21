@@ -30,6 +30,6 @@
   }
 
   .header {
-    @extend .win-header;
+    @extend %win-header;
   }
 }
