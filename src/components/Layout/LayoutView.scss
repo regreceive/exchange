@@ -12,6 +12,10 @@ li {
 :global {
   .color-up {
     color: #589065;
+
+    &::before {
+      content: '+';
+    }
   }
 
   .color-down {

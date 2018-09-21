@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { getTranslate } from 'react-localize-redux/lib/index';
 import uuid from 'uuid/v1';
 
-import constants from '../../../services/constants';
-
 @connect(store => {
   const { markets } = store.exchange;
 
@@ -45,16 +43,11 @@ export default class List extends React.Component {
         width: '33%',
         sorter: (a, b) => a.change - b.change,
         render: value => {
-          let color = '#fff';
-          let plus = '+';
-          if (value >= 0) {
-            color = constants.COLOR_RAISE;
-          } else {
-            color = constants.COLOR_FALL;
-            plus = '';
-          }
-
-          return <span style={{ color }}>{plus + value}%</span>;
+          return (
+            <span className={value >= 0 ? 'color-up' : 'color-down'}>
+              {value}%
+            </span>
+          );
         },
       },
     ];

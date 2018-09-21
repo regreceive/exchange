@@ -9,9 +9,9 @@ import Layout from './components/Layout';
 
 ReactDOM.render(
   <Provider store={store}>
-    {/*<PersistGate persistor={persistor}>*/}
-    <Layout />
-    {/*</PersistGate>*/}
+    <PersistGate persistor={persistor}>
+      <Layout />
+    </PersistGate>
   </Provider>,
   document.getElementById('root'),
 );

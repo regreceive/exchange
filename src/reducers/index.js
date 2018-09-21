@@ -7,15 +7,14 @@ import user from './userReducer';
 
 const appReducer = combineReducers({
   locale,
-  user,
   exchange,
-  // exchange: persistReducer(
-  //   {
-  //     key: 'exchange',
-  //     storage: session,
-  //   },
-  //   exchange,
-  // ),
+  user: persistReducer(
+    {
+      key: 'user',
+      storage: session,
+    },
+    user,
+  ),
 });
 
 const rootReducer = (state, action) => {
