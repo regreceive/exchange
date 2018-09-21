@@ -5,7 +5,7 @@ import throttle from 'lodash/throttle';
 
 import Exchange from '../../pages/Exchange/';
 import history from '../../history';
-import { clearSession } from '../../actions/globalActions';
+import { clearession } from '../../actions/globalActions';
 import LayoutView from './LayoutView';
 
 @connect(store => {
