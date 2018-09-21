@@ -5,9 +5,10 @@
   font-size: 12px;
 
   .header {
-    @extend .win-header;
+    @extend %win-header;
 
-    .ticker {
+    dl {
+      display: inline-block;
       height: 48px;
       padding-left: 20px;
       font-style: normal;
@@ -29,14 +30,6 @@
 
       .close {
         margin-left: 10px;
-      }
-
-      .color_up {
-        color: green;
-      }
-
-      .color_down {
-        color: red;
       }
     }
   }

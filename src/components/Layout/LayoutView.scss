@@ -1,3 +1,4 @@
+// 全局样式
 ul,
 li {
   padding: 0;
@@ -6,4 +7,14 @@ li {
 
 li {
   list-style: none;
+}
+
+:global {
+  .color-up {
+    color: #589065;
+  }
+
+  .color-down {
+    color: #ae4e54;
+  }
 }

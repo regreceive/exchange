@@ -1,22 +1,34 @@
+const mock = require('./mock');
+
 function send(socket, data) {
   console.log('send', JSON.stringify(data));
   socket.send(JSON.stringify(data));
 }
 
 function subHandle(socket, symbol, extraArgs, data, channel) {
+  let rest = '';
+  if (extraArgs.length > 0) {
+    rest = '.' + extraArgs.join('.');
+  }
+
   send(socket, {
     id: data.id || '',
     status: 'ok',
-    subbed: `market.${symbol}.${channel}`,
+    subbed: `market.${symbol}.${channel}${rest}`,
     ts: Date.now(),
   });
 }
 
-function unsubHandle(socket, symbol, extraArgs, data) {
+function unsubHandle(socket, symbol, extraArgs, data, channel) {
+  let rest = '';
+  if (extraArgs.length > 0) {
+    rest = '.' + extraArgs.join('.');
+  }
+
   send(socket, {
     id: data.id || '',
     status: 'ok',
-    unsubbed: `market.${symbol}.markets`,
+    unsubbed: `market.${symbol}.${channel}${rest}`,
     ts: Date.now(),
   });
 }
@@ -24,11 +36,17 @@ function unsubHandle(socket, symbol, extraArgs, data) {
 function marketsHandle(socket, symbol, extraArgs, data) {
   subHandle(socket, symbol, extraArgs, data, 'markets');
 
+  const markets = {
+    usdt: [['ENB', 1, 1], ['ECHO', 0, -1]],
+    btc: [['ETH', 2, 1.05]],
+    eth: [['ENB', 1, 1]],
+  };
+
   send(socket, {
     ch: `market.${symbol}.markets`,
     ts: Date.now(),
     tick: {
-      markets: [['ENB', 1, 1], ['ECHO', 0, 2]],
+      markets: markets[symbol],
     },
   });
 }
@@ -83,11 +101,13 @@ function depthHandle(socket, symbol, extraArgs, data) {
   });
 }
 
-function lineHandle(socket, symbol, extraArgs, data) {
-  subHandle(socket, symbol, extraArgs, data, 'line');
+function klineHandle(socket, symbol, extraArgs, data) {
+  subHandle(socket, symbol, extraArgs, data, 'kline');
 
+  const [period] = extraArgs;
+  //const tick = mock.kline.getAll(period);
   send(socket, {
-    ch: `market.${symbol}.line`,
+    ch: `market.${symbol}.kline.${period}`,
     ts: Date.now(),
     tick: {},
   });
@@ -118,18 +138,13 @@ module.exports = ws => {
           case 'depth':
             depthHandle(socket, symbol, extraArgs, data);
             break;
-          case 'line':
-            lineHandle(socket, symbol, extraArgs, data);
+          case 'kline':
+            klineHandle(socket, symbol, extraArgs, data);
             break;
         }
       } else if (data.hasOwnProperty('unsub')) {
         const [, symbol, channel, ...extraArgs] = data.unsub.split('.');
-        switch (channel) {
-          case 'markets':
-          case 'latest':
-            unsubHandle(socket, symbol, extraArgs, data);
-            break;
-        }
+        unsubHandle(socket, symbol, extraArgs, data, channel);
       }
     });
   });

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Icon } from 'antd';
 
-import './LineView.css';
+import './KLineView.css';
 
 export default class extends React.Component {
   static defaultProps = {
@@ -43,8 +44,7 @@ export default class extends React.Component {
       theme: 'Dark',
     };
 
-    const tvWidget = new window.TradingView.widget(widgetOptions);
-    this.tvWidget = tvWidget;
+    this.tvWidget = new window.TradingView.widget(widgetOptions);
   }
 
   componentWillUnmount() {
@@ -55,29 +55,33 @@ export default class extends React.Component {
   }
 
   render() {
+    const [price, change, high, low, vol] = this.props.latest;
     return (
       <div styleName="container">
         <div styleName="header">
-          <dl styleName="ticker">
+          <Icon type="down" />
+          <dl>
             <dt>
-              ETH/BTC
-              <span styleName="close">0.044311</span>
+              {this.props.symbol}
+              <span styleName="close">{price}</span>
             </dt>
             <dd>
-              <span>≈ 1959.13 cny</span>
+              <span>≈ {price} cny</span>
             </dd>
             <dd>
-              涨幅
-              <span styleName="color_up">+2.84%</span>
+              涨幅{' '}
+              <span className={change > 0 ? 'color-up' : 'color-down'}>
+                {change}%
+              </span>
             </dd>
             <dd>
-              高 <span>0.046368</span>
+              高 <span>{high}</span>
             </dd>
             <dd>
-              低 <span>0.041000</span>
+              低 <span>{low}</span>
             </dd>
             <dd>
-              24H量 <span>132136 ETH</span>
+              24H量 <span>{vol} ETH</span>
             </dd>
           </dl>
         </div>

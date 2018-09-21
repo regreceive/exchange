@@ -5,7 +5,7 @@
   font-size: 12px;
 
   .header {
-    @extend .win-header;
+    @extend %win-header;
   }
 
   :global {

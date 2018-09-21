@@ -1,5 +1,5 @@
 import { eventChannel } from 'redux-saga';
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { put, call, select, takeEvery } from 'redux-saga/effects';
 
 import * as conn from '../services/connection';
 import * as actions from '../actions/exchangeActions';
@@ -23,7 +23,7 @@ function createSocketChannel() {
         return emit(actions.depthComplete(data.tick));
       })
       .on('line', (symbol, extraArgs, data) => {
-        return emit(actions.lineComplete(data.tick));
+        return emit(actions.klineComplete(data.tick));
       });
 
     return () => {
@@ -86,10 +86,18 @@ function* subscribeDepth(action) {
   }
 }
 
-function* subscribeLine(action) {
+function* subscribeKLine(action) {
   const symbol = action.payload.replace('_', '');
+  const {
+    exchange: {
+      configs: { period },
+    },
+  } = yield select();
+
   try {
-    yield call([conn, 'subscribe'], { sub: `market.${symbol}.line` });
+    yield call([conn, 'subscribe'], {
+      sub: `market.${symbol}.kline.${period}`,
+    });
   } catch (e) {
     console.log(e);
   }
@@ -110,5 +118,5 @@ export function* watchMarket() {
   yield takeEvery('EXCHANGE.SUBSCRIBE_ORDERS', subscribeOrders);
   yield takeEvery('EXCHANGE.SUBSCRIBE_DEALS', subscribeDeals);
   yield takeEvery('EXCHANGE.SUBSCRIBE_DEPTH', subscribeDepth);
-  yield takeEvery('EXCHANGE.SUBSCRIBE_LINE', subscribeLine);
+  yield takeEvery('EXCHANGE.SUBSCRIBE_KLINE', subscribeKLine);
 }

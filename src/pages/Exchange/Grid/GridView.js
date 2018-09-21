@@ -7,7 +7,7 @@ import Mscy from '../Mscy';
 import TradePanel from '../TradePanel';
 import Orders from '../Orders';
 import Deals from '../Deals';
-import Line from '../Line';
+import KLine from '../KLine';
 import Depth from '../Depth';
 import './GridView.css';
 
@@ -27,7 +27,7 @@ const GridView = () => {
       </div>
       {/*走势图*/}
       <div styleName="line">
-        <Line />
+        <KLine />
       </div>
       {/*交易面板*/}
       <div styleName="trade-panel">

@@ -18,7 +18,7 @@ const initState = (function() {
     asks: [[0, 0]], // 卖1价,卖1量
   };
 
-  const line = {};
+  const kline = {};
 
   return {
     markets,
@@ -27,10 +27,11 @@ const initState = (function() {
     deals,
     trade,
     depth,
-    line,
+    kline,
     configs: {
       symbol: '',
       marketsSymbol: 'usdt',
+      period: '1day',
       searchWord: '',
     },
   };
@@ -74,8 +75,8 @@ const exchange = (state = initState, action) => {
       return { ...state, depth };
     }
     case 'EXCHANGE.LINE_COMPLETE': {
-      const line = action.payload;
-      return { ...state, line };
+      const kline = action.payload;
+      return { ...state, kline };
     }
     default:
       return state;

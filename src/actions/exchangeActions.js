@@ -90,16 +90,16 @@ export function depthComplete(data) {
   };
 }
 
-export function subscribeLine(symbol) {
+export function subscribeKLine(symbol) {
   return {
-    type: 'EXCHANGE.SUBSCRIBE_LINE',
+    type: 'EXCHANGE.SUBSCRIBE_KLINE',
     payload: symbol,
   };
 }
 
-export function lineComplete(data) {
+export function klineComplete(data) {
   return {
-    type: 'EXCHANGE.LINE_COMPLETE',
+    type: 'EXCHANGE.KLINE_COMPLETE',
     payload: data,
   };
 }
